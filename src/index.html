@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Alternate Column Scroll | Codrops</title>
+		<meta name="description" content="A layout with an alternate scroll on image columns and a content preview." />
+		<meta name="keywords" content="layout, scroll, locomotive scroll, column, javascript, web design" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="https://use.typekit.net/njz5ajv.css">
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+	</head>
+	<body class="loading">
+		<main>
+			<div class="frame">
+				<h1 class="frame__title">Alternate Column Scroll</h1>
+				<nav class="frame__links">
+					<a href="https://tympanus.net/codrops/2021/12/01/grid-zoom-layout/">Previous demo</a>
+					<a href="https://tympanus.net/codrops/?p=57959">Article</a>
+					<a href="https://github.com/codrops/ColumnScroll/">GitHub</a>
+				</nav>
+				<button class="unbutton button-menu" aria-label="Open the menu"><span></span></button>
+			</div>
+			<h2 class="heading heading--up">Jack Ruthless</h2>
+			<h2 class="heading heading--down">Jack Ruthless</h2>
+			<div class="columns" data-scroll-container>
+			
+
+				<div class="column-wrap column-wrap--height">
+
+				<div class="column" id="column-1">
+                </div>
+				</div>
+
+				<div class="column-wrap">
+					<div class="column" id="column-2" data-scroll-section>
+						<!-- Column 2 will dynamically populate -->
+					</div>
+				</div>
+
+				<div class="column-wrap column-wrap--height">
+
+				<div class="column" id="column-3"></div>
+				</div>
+
+			</div><!-- columns -->
+			<div class="content" style="opacity: 1;" id="contentD">
+
+				<div class="content__item">
+
+
+				</div>
+			
+		
+				<nav class="content__nav">
+					<div class="content__nav-wrap">
+						<div class="content__nav-item" style="background-image:url(img/25.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/26.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/27.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/28.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/29.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/30.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/31.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/32.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/33.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/34.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/35.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/36.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/37.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/38.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/39.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/40.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/41.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/42.jpg)"></div>
+						<div class="content__nav-item" style="background-image:url(img/43.jpg)"></div>
+					</div>
+				</nav>
+				<button class="unbutton button-back"><svg viewBox="0 0 50 9" width="100%"><path d="M0 4.5l5-3M0 4.5l5 3M50 4.5h-77"></path></svg></button>
+			</div>
+		</main>
+		<script type="module" src="js/index.js"></script>
+		<script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+			const container = document.querySelector('.columns');
+			const contentDiv = document.querySelector('.content');
+
+			
+
+			const columns = [
+				document.getElementById('column1'),
+				document.getElementById('column2'),
+				document.getElementById('column3')
+			];
+
+			const fetchContent = async () => {
+            	const SPACE_ID = 'zggawij42o34';
+				const ACCESS_TOKEN = '_SSMqARTowTpHiEi6Q3XJE_wPJzaGqhjYPZu-ljMMVM';
+				const CONTENT_TYPE = 'alternateImageList';
+
+            const response = await fetch(`https://cdn.contentful.com/spaces/${SPACE_ID}/entries?access_token=${ACCESS_TOKEN}&content_type=${CONTENT_TYPE}`);
+            const data = await response.json();
+            return data.items.map(item => ({
+                imageUrl: `https:${data.includes.Asset.find(asset => asset.sys.id === item.fields.image.sys.id)?.fields.file.url}`,
+                title: item.fields.title,
+                year: item.fields.year,
+				description:item.fields.description
+            })); // Adjust based on your Contentful model
+        };
+
+		const populateColumns = async () => {
+            const content = await fetchContent();
+
+            const column1 = document.getElementById('column-1');
+            const column2 = document.getElementById('column-2');
+            const column3 = document.getElementById('column-3');
+
+			const newContent = document.getElementById('contentD');
+
+			let pointerColumn1 = 1;
+			let pointerColumn2 = 2;
+			let pointerColumn3 = 3;
+
+			const totalElementInColumn = content.length/3;
+
+            content.forEach((item, index,) => {
+
+				// console.log("inside loop");
+                const figure = document.createElement('figure');
+                figure.classList.add('column__item');
+
+                figure.innerHTML = `
+                    <div class="column__item-imgwrap" data-pos="${index+2}">
+                        <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
+                    </div>
+                    <figcaption class="column__item-caption">
+                        <span>${item.title}</span>
+                        <span>${item.year}</span>
+                    </figcaption>
+                `;
+
+				const figure2 = document.createElement('figure');
+                figure2.classList.add('column__item');
+
+                figure2.innerHTML = `
+                    <div class="column__item-imgwrap" data-pos="${index+2}">
+                        <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
+                    </div>
+                    <figcaption class="column__item-caption">
+                        <span>${item.title}</span>
+                        <span>${item.year}</span>
+                    </figcaption>
+                `;
+
+				const figure3 = document.createElement('figure');
+                figure3.classList.add('column__item');
+
+
+                figure3.innerHTML = `
+                    <div class="column__item-imgwrap" data-pos="${index+2}">
+                        <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
+                    </div>
+                    <figcaption class="column__item-caption">
+                        <span>${item.title}</span>
+                        <span>${item.year}</span>
+                    </figcaption>
+                `;
+				
+				console.log(totalElementInColumn,"totalElementInColumn",index);
+            
+                 if (index < totalElementInColumn){
+					column1.appendChild(figure);
+					console.log("cond1");
+
+				} 
+                else if (index < totalElementInColumn*2){
+                column2.appendChild(figure2);
+				console.log("cond2");
+
+				} 
+                else if(index < totalElementInColumn*3) {
+					column3.appendChild(figure3);
+					console.log("cond3");
+
+				}
+
+                // if (index % 3 === 0){
+				// 	column1.appendChild(figure);
+				// 	pointerColumn1++;
+				// } 
+                // else if (index % 3 === 1){
+                // column2.appendChild(figure2);
+				//     pointerColumn2++;
+				// } 
+                // else {
+				// 	column3.appendChild(figure3);
+				// 	pointerColumn3++;
+				// }
+
+				const div = document.createElement('div');
+                div.classList.add('content__item');
+
+				div.innerHTML = `
+				
+				<h2 class="content__item-title">${item.title}</h2>
+				<div class="content__item-text">
+					<span>${item.description}</span>
+					<span>${item.year}</span>
+				</div> `;
+				// console.log(div);
+
+
+			newContent.append(div);
+				
+
+            });
+        };
+populateColumns();
+	});
+
+		</script>
+	</body>
+</html>
