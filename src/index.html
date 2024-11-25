@@ -12,19 +12,24 @@
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 	</head>
-	<body class="loading">
+	<body class="loading" >
 		<main>
 			<div class="frame">
-				<h1 class="frame__title">Alternate Column Scroll</h1>
+
+				<div class="sidebar">
+					<h1 class="sidebar-text" href="https://bagaholicboy.com/sections/bags">B / A / G</h1>
+					<!-- <div class="sidebar-text">B / A / G</div> -->
+				</div>
+				<!-- <h1 class="frame__title">Alternate Column Scroll</h1> -->
 				<nav class="frame__links">
-					<a href="https://tympanus.net/codrops/2021/12/01/grid-zoom-layout/">Previous demo</a>
-					<a href="https://tympanus.net/codrops/?p=57959">Article</a>
-					<a href="https://github.com/codrops/ColumnScroll/">GitHub</a>
+					<!-- <h1><a href="https://tympanus.net/codrops/2021/12/01/grid-zoom-layout/">B/A/G</a></h1> -->
+					<!-- <a href="https://tympanus.net/codrops/?p=57959">Article</a>
+					<a href="https://github.com/codrops/ColumnScroll/">GitHub</a> -->
 				</nav>
-				<button class="unbutton button-menu" aria-label="Open the menu"><span></span></button>
+				<!-- <button class="unbutton button-menu" aria-label="Open the menu"><span></span></button> -->
 			</div>
-			<h2 class="heading heading--up">Jack Ruthless</h2>
-			<h2 class="heading heading--down">Jack Ruthless</h2>
+			<!-- <h2 class="heading heading--up">Jack Ruthless</h2>
+			<h2 class="heading heading--down">Jack Ruthless</h2> -->
 			<div class="columns" data-scroll-container>
 			
 
@@ -40,10 +45,8 @@
 					</div>
 				</div>
 
-				<div class="column-wrap column-wrap--height">
-
-				<div class="column" id="column-3"></div>
-				</div>
+				<!-- <div class="column" id="column-3"></div>
+				</div> -->
 
 			</div><!-- columns -->
 			<div class="content" style="opacity: 1;" id="contentD">
@@ -124,7 +127,7 @@
 			let pointerColumn2 = 2;
 			let pointerColumn3 = 3;
 
-			const totalElementInColumn = content.length/3;
+			const totalElementInColumn = content.length/2;
 
             content.forEach((item, index,) => {
 
@@ -133,12 +136,12 @@
                 figure.classList.add('column__item');
 
                 figure.innerHTML = `
-                    <div class="column__item-imgwrap" data-pos="${index+2}">
+                    <div class="column__item-imgwrap" data-pos="${index}">
                         <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
                     </div>
                     <figcaption class="column__item-caption">
-                        <span>${item.title}</span>
-                        <span>${item.year}</span>
+                        <span class="left-align">${item.title}</span>
+                        <span class="right-align">${item.year}</span>
                     </figcaption>
                 `;
 
@@ -146,12 +149,12 @@
                 figure2.classList.add('column__item');
 
                 figure2.innerHTML = `
-                    <div class="column__item-imgwrap" data-pos="${index+2}">
+                    <div class="column__item-imgwrap" data-pos="${index}">
                         <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
                     </div>
-                    <figcaption class="column__item-caption">
-                        <span>${item.title}</span>
-                        <span>${item.year}</span>
+                     <figcaption class="column__item-caption">
+                        <span class="left-align">${item.title}</span>
+                        <span class="right-align">${item.year}</span>
                     </figcaption>
                 `;
 
@@ -181,24 +184,12 @@
 				console.log("cond2");
 
 				} 
-                else if(index < totalElementInColumn*3) {
-					column3.appendChild(figure3);
-					console.log("cond3");
-
-				}
-
-                // if (index % 3 === 0){
-				// 	column1.appendChild(figure);
-				// 	pointerColumn1++;
-				// } 
-                // else if (index % 3 === 1){
-                // column2.appendChild(figure2);
-				//     pointerColumn2++;
-				// } 
-                // else {
+                // else if(index < totalElementInColumn*3) {
 				// 	column3.appendChild(figure3);
-				// 	pointerColumn3++;
+				// 	console.log("cond3");
+
 				// }
+
 
 				const div = document.createElement('div');
                 div.classList.add('content__item');
@@ -207,8 +198,8 @@
 				
 				<h2 class="content__item-title">${item.title}</h2>
 				<div class="content__item-text">
-					<span>${item.description}</span>
-					<span>${item.year}</span>
+					<span class="left-align">${item.description}</span>
+					<span class="right-align">${item.year}</span>
 				</div> `;
 				// console.log(div);
 
@@ -217,6 +208,22 @@
 				
 
             });
+
+			// const figureStatic = document.createElement('figure');
+			// figureStatic.classList.add('column__item');
+
+
+			// figureStatic.innerHTML = `
+            //         <div class="column__item-imgwrap" data-pos="">
+            //             <div class="column__item-img" style="background-image:url(../src/img/product-tile-image.png)"></div>
+            //         </div>
+            //         <figcaption class="column__item-caption">
+            //             <span></span>
+            //             <span></span>
+            //         </figcaption>
+            //     `;
+
+			// 	column2.appendChild(figureStatic);
         };
 populateColumns();
 	});

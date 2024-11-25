@@ -8,7 +8,6 @@
 
 body {
   --color-text: #000;
-  --color-bg: #b7b19f;
   --color-link: #000;
   --color-link-hover: #000;
   --color-heading: #111;
@@ -203,7 +202,7 @@ main:after {
 .column-wrap {
   z-index: 1;
   flex-direction: column;
-  padding: 5vh 0 15vh;
+  padding: 0 0 11vh;
   display: flex;
   position: relative;
 }
@@ -235,10 +234,9 @@ main:after {
 }
 
 .column__item-imgwrap {
-  width: var(--grid-item-width);
   height: var(--grid-item-height);
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 6px;
   margin: 8vh 1vw 0;
   position: relative;
   overflow: hidden;
@@ -628,5 +626,31 @@ html.has-scroll-dragging {
 [data-scroll-direction="horizontal"] .c-scrollbar_thumb {
   bottom: 0;
   right: auto;
+}
+
+.sidebar {
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+  height: 250px;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.sidebar-text {
+  white-space: nowrap;
+  font-weight: bold;
+  transform: rotate(-90deg);
+}
+
+.left-align {
+  text-align: left;
+}
+
+.right-align {
+  text-align: right;
 }
 /*# sourceMappingURL=index.d046a61c.css.map */
