@@ -24,7 +24,7 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 			<div class="frame">
 
 				<div class="sidebar">
-					<h1 class="sidebar-text" href="https://bagaholicboy.com/sections/bags">B / A / G</h1>
+					<h1 class="sidebar-text"><a href="https://bagaholicboy.com/sections/bags">B / A / G</a></h1>
 					<!-- <div class="sidebar-text">B / A / G</div> -->
 				</div>
 				<!-- <h1 class="frame__title">Alternate Column Scroll</h1> -->
@@ -96,8 +96,7 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
     const contentDiv = document.querySelector('.content');
     const columns = [
         document.getElementById('column1'),
-        document.getElementById('column2'),
-        document.getElementById('column3')
+        document.getElementById('column2')
     ];
     const fetchContent = async ()=>{
         const SPACE_ID = 'zggawij42o34';
@@ -116,11 +115,8 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
         const content = await fetchContent();
         const column1 = document.getElementById('column-1');
         const column2 = document.getElementById('column-2');
-        const column3 = document.getElementById('column-3');
+        // const column3 = document.getElementById('column-3');
         const newContent = document.getElementById('contentD');
-        let pointerColumn1 = 1;
-        let pointerColumn2 = 2;
-        let pointerColumn3 = 3;
         const totalElementInColumn = content.length / 2;
         content.forEach((item, index)=>{
             // console.log("inside loop");
@@ -157,7 +153,6 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
                         <span>${item.year}</span>
                     </figcaption>
                 `;
-            console.log(totalElementInColumn, "totalElementInColumn", index);
             if (index < totalElementInColumn) {
                 column1.appendChild(figure);
                 console.log("cond1");
@@ -181,6 +176,21 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
             // console.log(div);
             newContent.append(div);
         });
+        console.log("mode", content.length, content.length % 2);
+        if (content.length % 2 == 1) {
+            console.log("inside condiiiton", content[0]);
+            const latestColumn2 = document.getElementById('column-2');
+            // Add the new HTML content directly
+            latestColumn2.innerHTML += `
+						<div class="column__item-imgwrap" data-pos="100">
+							<div class="column__item-img" style="background-image:url(${content[0].imageUrl})"></div>
+						</div>
+						<figcaption class="column__item-caption">
+							<span class="left-align">${content[0].title}</span>
+							<span class="right-align">${content[0].year}</span>
+						</figcaption>
+					`;
+        }
     // const figureStatic = document.createElement('figure');
     // figureStatic.classList.add('column__item');
     // figureStatic.innerHTML = `

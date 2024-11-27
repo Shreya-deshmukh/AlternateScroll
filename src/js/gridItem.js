@@ -30,12 +30,12 @@ export class GridItem {
     this.position = Number(this.DOM.img.outer.dataset.pos) - 1;
     this.DOM.caption = this.DOM.el.querySelector("figcaption");
 
-    console.log(
-      this.DOM.outer,
-      "ddddsssssssssss",
-      this.DOM.img,
-      this.position,
-      this.DOM.caption
-    );
+    // console.log(
+    //   this.DOM.outer,
+    //   "ddddsssssssssss",
+    //   this.DOM.img,
+    //   this.position,
+    //   this.DOM.caption
+    // );
   }
 }

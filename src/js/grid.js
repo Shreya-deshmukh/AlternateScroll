@@ -126,14 +126,14 @@ export class Grid {
         this.isAnimating = true;
         this.isGridView = false;
 
-        console.log(position, "PPPPPPPPPPPP******PPPPPPPPPPPPP");
+        // console.log(position, "PPPPPPPPPPPP******PPPPPPPPPPPPP");
 
         // Update currentGridItem
         this.currentGridItem = position;
 
         // Stop/Destroy the Locomotive scroll
         this.lscroll.destroy();
-        console.log(gridItem, "sssssssss******ssssssss");
+        // console.log(gridItem, "sssssssss******ssssssss");
         this.showContent(gridItem);
       });
 

@@ -1157,12 +1157,12 @@ class Grid {
                 if (!this.isGridView || this.isAnimating || document.documentElement.classList.contains("has-scroll-scrolling")) return false;
                 this.isAnimating = true;
                 this.isGridView = false;
-                console.log(position, "PPPPPPPPPPPP******PPPPPPPPPPPPP");
+                // console.log(position, "PPPPPPPPPPPP******PPPPPPPPPPPPP");
                 // Update currentGridItem
                 this.currentGridItem = position;
                 // Stop/Destroy the Locomotive scroll
                 this.lscroll.destroy();
-                console.log(gridItem, "sssssssss******ssssssss");
+                // console.log(gridItem, "sssssssss******ssssssss");
                 this.showContent(gridItem);
             });
             // Hovering on the grid item's image outer.
@@ -3946,7 +3946,13 @@ class GridItem {
         this.DOM.img.inner = this.DOM.el.querySelector(".column__item-img");
         this.position = Number(this.DOM.img.outer.dataset.pos) - 1;
         this.DOM.caption = this.DOM.el.querySelector("figcaption");
-        console.log(this.DOM.outer, "ddddsssssssssss", this.DOM.img, this.position, this.DOM.caption);
+    // console.log(
+    //   this.DOM.outer,
+    //   "ddddsssssssssss",
+    //   this.DOM.img,
+    //   this.position,
+    //   this.DOM.caption
+    // );
     }
 }
 
