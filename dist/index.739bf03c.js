@@ -684,6 +684,13 @@ class ProductDisplay {
         return figure;
     }
 }
+window.toggleColorPopup = function() {
+    const popup = document.querySelector(".color-popup");
+    const overlay = document.getElementById("overlay");
+    const isPopupVisible = popup.style.display === "flex";
+    popup.style.display = isPopupVisible ? "none" : "flex";
+    overlay.style.display = isPopupVisible ? "none" : "flex";
+};
 window.showColorPicker = function() {
     console.log(showColorPicker, "showColorPicker");
     document.getElementById("color-picker-popup").classList.remove("hidden");
