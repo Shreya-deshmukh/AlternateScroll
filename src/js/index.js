@@ -329,6 +329,6 @@ preloadImages(".column__item-img").then(() => {
 });
 
 
-window.toggleColorPopup(){
+window.toggleColorPopup()= function () {
   alert("toggleColorPopup");
 }
