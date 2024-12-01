@@ -628,22 +628,56 @@ html.has-scroll-dragging {
   right: auto;
 }
 
-.sidebar {
-  background-color: #fff;
-  flex-direction: column;
-  align-items: center;
-  width: 10%;
-  height: 250px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
   display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
 }
 
-.sidebar-text {
-  white-space: nowrap;
+.sidebar {
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  flex-direction: column;
+  align-items: center;
+  width: 60px;
+  padding: 10px;
+  display: flex;
+}
+
+.sidebar button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.filters {
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
+}
+
+.filter-circle {
+  background-color: #000;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+
+.filter-circle.blue {
+  background-color: #00f;
+}
+
+footer .vertical-text {
+  writing-mode: vertical-rl;
+  align-items: center;
+  font-size: 14px;
   font-weight: bold;
-  transform: rotate(-90deg);
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  transform: rotate(180deg);
 }
 
 .left-align {
@@ -652,5 +686,87 @@ html.has-scroll-dragging {
 
 .right-align {
   text-align: right;
+}
+
+.popup {
+  z-index: 1000;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.color-options {
+  gap: 10px;
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.color-option {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.filter-circle.blue {
+  background-color: #00f;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin-top: 20px;
+}
+
+.color-picker-container {
+  margin-top: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.main-circle {
+  cursor: pointer;
+  z-index: 2;
+  background-color: #00f;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.color-popup {
+  z-index: 3;
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
+.color-circle {
+  cursor: pointer;
+  border-radius: 50%;
+  gap: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+#overlay {
+  z-index: 2;
+  background-color: #00000080;
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 /*# sourceMappingURL=index.d046a61c.css.map */

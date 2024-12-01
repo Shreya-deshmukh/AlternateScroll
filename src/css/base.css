@@ -662,26 +662,58 @@ html.has-scroll-dragging {
 	bottom: 0;
 }
 
-.sidebar {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 10%; /* Adjust width as needed */
-	background-color: #fff; /* Background color */
-	/* border: 2px solid red; */
-	height: 250px; /* Adjust height as needed */
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	display: flex;
+  }
+  
+  .sidebar {
+	width: 60px;
+	background-color: white;
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
 	align-items: center;
-}
-
-.sidebar-text {
-	transform: rotate(-90deg);
-	white-space: nowrap;
-	/* font-size: 16px;  */
+	padding: 10px;
+	border-right: 1px solid #ddd;
+  }
+  
+  .sidebar button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 12px;
+	margin-bottom: 20px;
+  }
+  
+  .filters {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+  }
+  
+  .filter-circle {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background-color: #000;
+  }
+  
+  .filter-circle.blue {
+	background-color: blue;
+  }
+  
+  footer .vertical-text {
+	writing-mode: vertical-rl;
+	align-items: center;
+	transform: rotate(180deg);
+	position: fixed;
+	left: 10px;
+	bottom: 10px;
+	font-size: 14px;
 	font-weight: bold;
-}
+  }
+  
 
 .left-align{
 text-align: left;
@@ -690,3 +722,91 @@ text-align: left;
 .right-align{
 	text-align: right;
 }
+
+.popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	border-radius: 10px;
+	z-index: 1000;
+  }
+  
+  .popup.hidden {
+	display: none;
+  }
+  
+  .color-options {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 15px;
+  }
+  
+  .color-option {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	cursor: pointer;
+	border: 1px solid #ddd;
+  }
+  
+  .filter-circle.blue {
+    background-color: #00f;
+	/* background: linear-gradient(to bottom, blue 50%, limegreen 50%); */
+    margin-top: 20px;
+	
+border-radius: 50%;
+width: 36px;
+height: 36px;
+}
+
+.color-picker-container {
+	margin-top: 10px;
+	position: relative;
+	display: inline-block;
+  }
+  
+  .main-circle {
+	width: 40px;
+	height: 40px;
+	background-color: blue;
+	border-radius: 50%;
+	cursor: pointer;
+	z-index: 2;
+  }
+  
+  .color-popup {
+	display: none;
+	position: absolute;
+	flex-direction: column;
+    top: 50px;
+	left: 0;
+	display: flex;
+	gap: 10px;
+	z-index: 3;
+  }
+
+  
+  .color-circle {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	cursor: pointer;
+	gap: 20px;
+	/* border: 1px solid #000; */
+  }
+
+  #overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+	z-index: 2;
+  }
+  
