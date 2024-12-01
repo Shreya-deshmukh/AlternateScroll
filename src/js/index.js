@@ -327,8 +327,3 @@ preloadImages(".column__item-img").then(() => {
     new Grid(document.querySelector(".columns"));
   }, 1000);
 });
-
-
-window.toggleColorPopup()= function () {
-  alert("toggleColorPopup");
-}
