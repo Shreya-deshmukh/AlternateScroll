@@ -252,8 +252,17 @@ main:after {
 
 .column__item-caption {
   text-transform: uppercase;
+  justify-content: space-between;
   margin-top: .5rem;
-  padding: 0 3vw;
+  display: flex;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
 }
 
 .content {
@@ -280,7 +289,7 @@ main:after {
 }
 
 .content__item {
-  opacity: 0;
+  opacity: 1;
   flex-direction: column;
   grid-area: content;
   height: 0;
@@ -665,10 +674,6 @@ body {
   height: 24px;
 }
 
-.filter-circle.blue {
-  background-color: #00f;
-}
-
 footer .vertical-text {
   writing-mode: vertical-rl;
   align-items: center;
@@ -719,7 +724,6 @@ footer .vertical-text {
 }
 
 .filter-circle.blue {
-  background-color: #00f;
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -735,19 +739,22 @@ footer .vertical-text {
 .main-circle {
   cursor: pointer;
   z-index: 2;
-  background-color: #00f;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
 }
 
 .color-popup {
   z-index: 3;
+  background-color: #fff;
+  border-top: 1px solid #d3d3d3;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
+  margin: auto;
+  padding: 10px 5px;
   display: flex;
   position: absolute;
-  top: 50px;
   left: 0;
 }
 
@@ -755,8 +762,13 @@ footer .vertical-text {
   cursor: pointer;
   border-radius: 50%;
   gap: 20px;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.color-circle.selected {
+  display: none;
 }
 
 #overlay {

@@ -18,27 +18,11 @@
 			<img src="img/brandmark.png" alt="logo" style="width: -webkit-fill-available;"></img>
 			<div class="filters">
 			
-			  <!-- <div class="filter-circle blue" onclick="showColorPicker()"></div>
-
-			  <div id="color-picker-popup" class="popup hidden">
-				<h3>Select a Color</h3>
-				<div class="color-options">
-				  <div class="color-option" style="background-color: red;" onclick="selectColor('red')"></div>
-				  <div class="color-option" style="background-color: blue;" onclick="selectColor('blue')"></div>
-				  <div class="color-option" style="background-color: green;" onclick="selectColor('green')"></div>
-				</div>
-				<button onclick="closeColorPicker()">Close</button>
-			  </div> -->
-
 			  <div class="color-picker-container">
 				<div class="main-circle" onclick="toggleColorPopup()"></div>
-				<div class="color-popup" style="display: none;">
-				  <div class="color-circle" style="background-color: red;" onclick="selectColor('red')"></div>
-				  <div class="color-circle" style="background-color: green;" onclick="selectColor('green')"></div>
-				  <div class="color-circle" style="background-color: yellow;" onclick="selectColor('yellow')"></div>
-				</div>
+				<div class="color-popup" style="display: none;"></div>
 			  </div>
-			  <!-- <div id="overlay" onclick="toggleColorPopup()"></div> -->
+			  <div id="overlay" onclick="toggleColorPopup()"></div>
 
 			</div>
 		  </div>
@@ -49,8 +33,7 @@
 		  </div>
 		  </main> -->
 
-
-		<main>
+		  <main>
 			<div class="frame">
 				<nav class="frame__links">
 				
@@ -131,13 +114,13 @@
 //       overlay.style.display = isPopupVisible ? 'none' : 'flex';
 //   }
 
-  function selectColor(color) {
-	alert("select color");
-    console.log(`Selected color: ${color}`);
-    // Add any additional logic for selecting the color
-    document.querySelector('.main-circle').style.backgroundColor = color;
-    document.querySelector('.color-popup').style.display = 'none';
-  }
+//   function selectColor(color) {
+// 	alert("select color");
+//     console.log(`Selected color: ${color}`);
+//     // Add any additional logic for selecting the color
+//     document.querySelector('.main-circle').style.backgroundColor = color;
+//     document.querySelector('.color-popup').style.display = 'none';
+//   }
 
 //         document.addEventListener("DOMContentLoaded", () => {
 

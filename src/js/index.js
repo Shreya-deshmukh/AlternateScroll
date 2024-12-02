@@ -10,8 +10,53 @@ export class ProductDisplay {
   }
 
   async init() {
-    document.addEventListener("DOMContentLoaded", () => {
-      this.populateColumns();
+    // document.addEventListener("DOMContentLoaded", () => {
+    console.log("calling once");
+    const columns = await this.populateColumns();
+    // });
+  }
+
+  async fetchColors() {
+    console.log("calling fetchcolor");
+    const url = `https://cdn.contentful.com/spaces/${this.SPACE_ID}/entries?access_token=${this.ACCESS_TOKEN}&content_type=colorFilters`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      const colors = data.items
+        .map((item) => item.fields.color.content[0].content[0].value)
+        .filter((color) => color !== undefined);
+
+      console.log(colors, "values");
+
+      const uniqueColors = [...new Set(colors)];
+
+      console.log(uniqueColors);
+      localStorage.setItem("color-list", uniqueColors);
+      productDisplayInstance.populateColors(uniqueColors);
+    } catch (error) {
+      console.error("Error fetching colors:", error);
+    }
+  }
+
+  async populateColors(colors) {
+    console.log(colors, "colorscolors");
+    const colorPopup = document.querySelector(".color-popup");
+    const mainCircle = document.querySelector(".main-circle");
+    colorPopup.innerHTML = "";
+
+    mainCircle.style.backgroundColor = colors[0];
+    // }
+
+    colors.forEach((color, index) => {
+      const colorDiv = document.createElement("div");
+      colorDiv.className = `color-circle color-${index}`;
+      colorDiv.style.backgroundColor = color;
+      colorDiv.setAttribute("onclick", `selectColor('${color}')`);
+      colorPopup.appendChild(colorDiv);
+
+      console.log(index, "index");
+      // Set first color as main-circle color
     });
   }
 
@@ -35,10 +80,12 @@ export class ProductDisplay {
   }
 
   async populateColumns(color) {
+    console.log("calling populate columns");
+
     const content = await this.fetchContent(color);
+    const colorOptions = await this.fetchColors();
 
     if (content.length <= 6) {
-      alert("inside condition");
       document.querySelector(".column-wrap--height").style.display = "flex";
       document.querySelector(".column-wrap--height").style.flexDirection =
         "column";
@@ -83,8 +130,8 @@ export class ProductDisplay {
           <div class="column__item-img" style="background-image:url(${content[0].imageUrl})"></div>
         </div>
         <figcaption class="column__item-caption">
-          <span class="left-align">${content[0].title}</span>
-          <span class="right-align">${content[0].year}</span>
+          <span class="left">${content[0].title}</span>
+          <span class="right">${content[0].year}</span>
         </figcaption>
       `;
     }
@@ -97,8 +144,8 @@ export class ProductDisplay {
       contentItem.innerHTML = `
         <h2 class="content__item-title">${item.title}</h2>
         <div class="content__item-text">
-          <span class="left-align">${item.description}</span>
-          <span class="right-align">${item.year}</span>
+          <span class="left">${item.description}</span>
+          <span class="right">${item.year}</span>
         </div>`;
       newContent.appendChild(contentItem);
     });
@@ -112,8 +159,8 @@ export class ProductDisplay {
         <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
       </div>
       <figcaption class="column__item-caption">
-        <span>${item.title}</span>
-        <span>${item.year}</span>
+        <span class="left">${item.title}</span>
+        <span class="right">${item.year}</span>
       </figcaption>
     `;
     return figure;
@@ -126,7 +173,10 @@ window.toggleColorPopup = function () {
   const isPopupVisible = popup.style.display === "flex";
 
   popup.style.display = isPopupVisible ? "none" : "flex";
-  overlay.style.display = isPopupVisible ? "none" : "flex";
+  // overlay.style.display = isPopupVisible ? "none" : "flex";
+
+  // const popup = document.querySelector(".color-popup");
+  // popup.style.display = popup.style.display === "none" ? "block" : "none";
 };
 
 window.showColorPicker = function () {
@@ -144,22 +194,34 @@ const productDisplayInstance = new ProductDisplay();
 // Function triggered when a color is selected
 window.selectColor = async function (color) {
   // closeColorPicker();
+  console.log("calling selectcolor");
   const products = await productDisplayInstance.populateColumns(color);
 
-  alert("select color");
   console.log(`Selected color: ${color}`);
   // Add any additional logic for selecting the color
   document.querySelector(".main-circle").style.backgroundColor = color;
+
+  // Remove selected class from all color elements
+  document.querySelectorAll(".color-option").forEach((el) => {
+    el.classList.remove("selected");
+  });
+
+  // Add selected class to clicked color element
+  const selectedColorElement = document.querySelector(
+    `[onclick="selectColor('${color}')"]`
+  );
+  if (selectedColorElement) {
+    selectedColorElement.classList.add("selected");
+  }
+
   document.querySelector(".color-popup").style.display = "none";
   const overlay = document.getElementById("overlay");
   overlay.style.display = "none";
-  alert("here");
 
   // displayProducts(products);
 };
-
 // Initialize the ProductDisplay class
-new ProductDisplay();
+// new ProductDisplay();
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   alert("callingg");
