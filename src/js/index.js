@@ -302,7 +302,7 @@ export class ProductDisplay {
 //   imageModal.style.display = "none";
 // }
 
-window.loadFooterImages = function () {
+loadFooterImages = function () {
   const imagesWrapper = document.querySelector(".image-wrapper");
   const leftArrow = document.querySelector(".left-arrow");
   const rightArrow = document.querySelector(".right-arrow");
