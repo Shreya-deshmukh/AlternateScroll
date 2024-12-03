@@ -302,7 +302,7 @@ export class ProductDisplay {
 //   imageModal.style.display = "none";
 // }
 
-loadFooterImages = function () {
+function loadFooterImages() {
   const imagesWrapper = document.querySelector(".image-wrapper");
   const leftArrow = document.querySelector(".left-arrow");
   const rightArrow = document.querySelector(".right-arrow");
@@ -336,7 +336,7 @@ loadFooterImages = function () {
       contentDisplay.innerHTML = `<iframe src="${contentURL}" frameborder="0" style="width: 100%; height: 100%;"></iframe>`;
     });
   });
-};
+}
 
 window.showPageContent = function (imageUrl, title, year) {
   console.log("calling showPageContent....!");
@@ -357,7 +357,7 @@ window.showPageContent = function (imageUrl, title, year) {
   productYear.textContent = year;
   // productDescription.textContent = title;
 
-  this.loadFooterImages();
+  loadFooterImages();
   pageContent.style.display = "block"; // Display the page
 };
 
