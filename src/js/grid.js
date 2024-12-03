@@ -245,6 +245,7 @@ export class Grid {
    * @param {GridItem} gridItem - the gridItem element.
    */
   showContent(gridItem) {
+    console.log(gridItem, "gridItem");
     // All the other (that are inside the viewport)
     this.viewportGridItems = this.gridItemArr.filter(
       (el) => el != gridItem && el.DOM.el.classList.contains("in-view")

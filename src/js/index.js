@@ -79,6 +79,85 @@ export class ProductDisplay {
     }));
   }
 
+  async populateColumns1(color) {
+    alert("inside function 1");
+    console.log("calling populate columns");
+
+    const content = await this.fetchContent(color);
+    const colorOptions = await this.fetchColors();
+
+    if (content.length <= 6) {
+      document.querySelector(".column-wrap--height").style.display = "flex";
+      document.querySelector(".column-wrap--height").style.flexDirection =
+        "column";
+    }
+
+    let column1 = document.getElementById("column-1");
+    let column2 = document.getElementById("column-2");
+
+    // Clear the columns if a color filter is applied
+    if (color) {
+      column1.innerHTML = "";
+      column2.innerHTML = "";
+      // document.getElementById("column-3")?.innerHTML = ""; // Assuming there's a third column.
+    }
+
+    // Optional handling of a third column if necessary
+    //  const column3 = document.getElementById("column-3");
+
+    const totalElementInColumn = Math.ceil(content.length / 2);
+
+    content.forEach((item, index) => {
+      const figure1 = this.createFigure(item, index);
+      const figure2 = this.createFigure(item, index + 1);
+
+      if (index < totalElementInColumn) {
+        column1.appendChild(figure1);
+      } else if (index < totalElementInColumn * 2) {
+        column2.appendChild(figure2);
+      }
+
+      // If you want to handle a third column:
+      // else if (index < totalElementInColumn * 3) {
+      //   column3.appendChild(figure3);
+      // }
+    });
+
+    // Handle odd number of elements by repeating the first element in column 2
+    // if (content.length % 2 === 1) {
+    //   const figure = this.createFigure(content[0], 100);
+    //   column2.innerHTML += `
+    //     <div class="column__item-imgwrap" data-pos="100">
+    //       <div class="column__item-img" style="background-image:url(${content[0].imageUrl})"></div>
+    //     </div>
+    //     <figcaption class="column__item-caption">
+    //       <span class="left">${content[0].title}</span>
+    //       <span class="right">${content[0].year}</span>
+    //     </figcaption>
+    //   `;
+    // }
+    const elements = document.querySelectorAll(".column-wrap");
+    elements.forEach((element) => {
+      element.style.width = "90%";
+    });
+
+    // Populate content div
+    const newContent = document.getElementById("contentD");
+
+    content.forEach((item) => {
+      const contentItem = document.createElement("div");
+      contentItem.classList.add("content__item");
+      contentItem.innerHTML = `
+        <h2 class="content__item-title">${item.title}</h2>
+        <div class="content__item-text" style="text-align: left;">
+         <p>${item.year}</p>
+          <p>${item.description}</p>
+         
+        </div>`;
+      newContent.appendChild(contentItem);
+    });
+  }
+
   async populateColumns(color) {
     console.log("calling populate columns");
 
@@ -143,9 +222,10 @@ export class ProductDisplay {
       contentItem.classList.add("content__item");
       contentItem.innerHTML = `
         <h2 class="content__item-title">${item.title}</h2>
-        <div class="content__item-text">
-          <span class="left">${item.description}</span>
-          <span class="right">${item.year}</span>
+        <div class="content__item-text" style="text-align: left;">
+         <p>${item.year}</p>
+          <p>${item.description}</p>
+         
         </div>`;
       newContent.appendChild(contentItem);
     });
@@ -195,7 +275,7 @@ const productDisplayInstance = new ProductDisplay();
 window.selectColor = async function (color) {
   // closeColorPicker();
   console.log("calling selectcolor");
-  const products = await productDisplayInstance.populateColumns(color);
+  const products = await productDisplayInstance.populateColumns1(color);
 
   console.log(`Selected color: ${color}`);
   // Add any additional logic for selecting the color
