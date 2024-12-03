@@ -832,3 +832,176 @@ height: 36px;
 	z-index: 2;
   }
   
+  /* .image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.image-modal-content {
+    position: relative;
+    text-align: center;
+}
+
+.image-modal img {
+    max-width: 80%;
+    max-height: 80%;
+    border: 5px solid white;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    padding: 10px;
+    background: red;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+} */
+
+
+.page-container {
+	max-width: 800px;
+	/* width: 100%; */
+	background: white;
+	padding: 20px;
+	/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+	margin: 20px;
+}
+
+/* Ad Section */
+.ad-section {
+	width: 100%;
+	height: 150px;
+	background-color: #e0e0e0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #888;
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+/* Product Section */
+.product-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: left;
+}
+.product-title,
+  .product-subtitle,
+  .product-description {
+    text-align: left;
+    width: 100%; /* Ensure the elements use the full width */
+  }
+
+.product-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	text-align: left;
+}
+
+.product-subtitle {
+	font-size: 21px;
+	font-weight: 400;
+
+	color: #666;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.product-image {
+	width: 300px;
+	height: 300px;
+	margin-bottom: 15px;
+	cursor: pointer;
+	background-size: cover;
+}
+
+.product-description {
+	font-size: 21px;
+	font-weight: 400;
+	color: #444;
+	line-height: 1.6;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+.product-link {
+	font-size: 16px;
+	color: #007BFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.product-link:hover {
+	text-decoration: underline;
+}
+
+/* Image Modal */
+.image-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	padding: 20px;
+	display: none; /* Hidden by default */
+}
+
+.image-modal-content {
+	position: relative;
+	width: 80vmin; /* Square box width */
+	height: 80vmin; /* Square box height */
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+}
+
+.image-modal img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover; /* Image fills the square box */
+}
+
+.back-button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 18px;
+	padding: 10px;
+	background: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+	background-color: #f0f0f0;
+}

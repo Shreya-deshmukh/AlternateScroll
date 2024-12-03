@@ -601,6 +601,9 @@ class ProductDisplay {
         // document.addEventListener("DOMContentLoaded", () => {
         console.log("calling once");
         const columns = await this.populateColumns();
+        document.body.addEventListener("click", (event)=>{
+        //  expandImage(event);
+        });
     // });
     }
     async fetchColors() {
@@ -651,7 +654,7 @@ class ProductDisplay {
             }));
     }
     async populateColumns1(color) {
-        alert("inside function 1");
+        // alert("inside function 1");
         console.log("calling populate columns");
         const content = await this.fetchContent(color);
         const colorOptions = await this.fetchColors();
@@ -773,17 +776,97 @@ class ProductDisplay {
         const figure = document.createElement("figure");
         figure.classList.add("column__item");
         figure.innerHTML = `
-      <div class="column__item-imgwrap" data-pos="${index}">
-        <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
-      </div>
-      <figcaption class="column__item-caption">
-        <span class="left">${item.title}</span>
-        <span class="right">${item.year}</span>
-      </figcaption>
-    `;
+  <div class="column__item-imgwrap" data-pos="${index}">
+    <div class="column__item-title" style="text-align: center; margin-bottom: 10px;">
+      ${item.title}
+    </div>
+    <div class="column__item-img" 
+         style="background-image: url(${item.imageUrl}); cursor: pointer;" 
+         onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.year}')">
+    </div>
+    <div class="column__item-info" style="display: flex; justify-content: flex-start; margin-top: 10px;">
+      <span class="year">${item.year}</span>
+    </div>
+  </div>
+`;
         return figure;
     }
 }
+function escapeSpecialChars(str) {
+    return str.replace(/\\/g, "\\\\") // Escape backslashes
+    .replace(/'/g, "\\'") // Escape single quotes
+    .replace(/"/g, '\\"'); // Escape double quotes
+}
+// function expandImage(event) {
+//   const imageModal = document.getElementById("imageModal");
+//   const expandedImage = document.getElementById("expandedImage");
+//   // Extract the background image URL from the clicked element
+//   const target = event.target;
+//   if (target.classList.contains("column__item-img")) {
+//     const imageUrl = target.style.backgroundImage.slice(5, -2); // Remove 'url("...")'
+//     expandedImage.src = imageUrl;
+//     imageModal.style.display = "flex";
+//   }
+// }
+// window.closeModal = function () {
+//   const imageModal = document.getElementById("imageModal");
+//   const expandedImage = document.getElementById("expandedImage");
+//   // Hide the modal and reset the image src
+//   imageModal.style.display = "none";
+//   expandedImage.src = "data:image/gif;base64,R0lGODlhAQABAAAAACw="; // Reset to placeholder
+// };
+// function expandImage(event) {
+//   const imageModal = document.getElementById("imageModal");
+//   const expandedImage = document.getElementById("expandedImage");
+//   // Use background image URL from the clicked element
+//   const target = event.target;
+//   if (target.classList.contains("product-image")) {
+//     const imageUrl = target.style.backgroundImage.slice(5, -2); // Remove 'url("...")'
+//     expandedImage.src = imageUrl;
+//     imageModal.style.display = "flex";
+//   }
+// }
+// function closeModal() {
+//   const imageModal = document.getElementById("imageModal");
+//   imageModal.style.display = "none";
+// }
+window.showPageContent = function(imageUrl, title, year) {
+    console.log("calling showPageContent....!");
+    // const item = JSON.parse(element.replace(/\\'/g, "'").replace(/\\"/g, '"'));
+    const pageContent = document.getElementById("pageContent");
+    const imageModal = document.getElementById("product-image");
+    const column = document.getElementById("columns");
+    const productTitle = document.querySelector(".product-title");
+    const productYear = document.querySelector(".product-subtitle");
+    const productDescription = document.querySelector(".product-description");
+    column.style.display = "none";
+    imageModal.style.backgroundImage = `url(${imageUrl})`;
+    productTitle.textContent = title;
+    productYear.textContent = year;
+    // productDescription.textContent = title;
+    pageContent.style.display = "block"; // Display the page
+};
+// Expand Image in Modal
+window.expandImage = function(event) {
+    const pageContent = document.getElementById("pageContent");
+    const imageModal = document.getElementsByClassName("product-image");
+    pageContent.style.display = "block";
+    console.log("calling....!");
+// const imageModal = document.getElementById("imageModal");
+// const expandedImage = document.getElementById("expandedImage");
+// // Use background image URL from the clicked element
+// const target = event.target;
+// if (event) {
+//   const imageUrl = event; // Remove 'url("...")'
+//   expandedImage.src = imageUrl;
+//   imageModal.style.display = "flex";
+// }
+};
+// Close Modal
+window.closeModal = function() {
+    const imageModal = document.getElementById("imageModal");
+    imageModal.style.display = "none";
+};
 window.toggleColorPopup = function() {
     const popup = document.querySelector(".color-popup");
     const overlay = document.getElementById("overlay");

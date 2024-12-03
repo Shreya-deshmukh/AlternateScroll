@@ -781,4 +781,133 @@ footer .vertical-text {
   top: 0;
   left: 0;
 }
+
+.page-container {
+  background: #fff;
+  max-width: 800px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.ad-section {
+  color: #888;
+  background-color: #e0e0e0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  display: flex;
+}
+
+.product-section {
+  text-align: left;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.product-title, .product-subtitle, .product-description {
+  text-align: left;
+  width: 100%;
+}
+
+.product-title {
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.product-subtitle {
+  color: #666;
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.product-image {
+  cursor: pointer;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  margin-bottom: 15px;
+}
+
+.product-description {
+  color: #444;
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.product-link {
+  color: #007bff;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.product-link:hover {
+  text-decoration: underline;
+}
+
+.image-modal {
+  z-index: 1000;
+  background-color: #000c;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.image-modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 80vmin;
+  height: 80vmin;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px #00000080;
+}
+
+.image-modal img {
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.back-button {
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  font-size: 18px;
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  box-shadow: 0 2px 4px #0003;
+}
+
+.back-button:hover {
+  background-color: #f0f0f0;
+}
 /*# sourceMappingURL=index.d046a61c.css.map */
