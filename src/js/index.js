@@ -27,9 +27,14 @@ export class ProductDisplay {
       const response = await fetch(url);
       const data = await response.json();
 
+      console.log(data, "dddddddddddddddddddddddd");
+
       const colors = data.items
-        .map((item) => item.fields.color.content[0].content[0].value)
-        .filter((color) => color !== undefined);
+        .map((item) => ({
+          color1: item.fields.color1,
+          color2: item.fields.color2,
+        }))
+        .filter((color) => color.color1 && color.color2);
 
       console.log(colors, "values");
 
@@ -44,18 +49,21 @@ export class ProductDisplay {
   }
 
   async populateColors(colors) {
-    console.log(colors, "colorscolors");
+    console.log(colors[0].color1, colors[0].color2, "colorscolors");
     const colorPopup = document.querySelector(".color-popup");
     const mainCircle = document.querySelector(".main-circle");
     colorPopup.innerHTML = "";
 
-    mainCircle.style.backgroundColor = colors[0];
+    mainCircle.style.background = `linear-gradient(180deg, ${colors[0].color1} 50%, ${colors[0].color2} 50%)`;
+    console.log(mainCircle.style.backgroundColor, "hhhyhyyyaaaaaaaaaaaaa");
     // }
 
     colors.forEach((color, index) => {
       const colorDiv = document.createElement("div");
       colorDiv.className = `color-circle color-${index}`;
-      colorDiv.style.backgroundColor = color;
+      colorDiv.style.background = `linear-gradient(180deg, ${color.color1} 50%, ${color.color2} 50%)`;
+      colorDiv.style.border = `1px solid hsla(260,11%,85%,1)`;
+
       colorDiv.setAttribute("onclick", `selectColor('${color}')`);
       colorPopup.appendChild(colorDiv);
 
@@ -199,6 +207,38 @@ export class ProductDisplay {
         column2.appendChild(figure2);
       }
 
+      //populate footer
+
+      const imagesWrapper = document.querySelector(".image-wrapper");
+
+      const card = document.createElement("div");
+      card.classList.add("image-card");
+
+      const img = document.createElement("img");
+      img.src = item.imageUrl;
+      img.alt = item.title;
+      img.setAttribute("data-content", item.imageUrl);
+
+      // Create container for title and date
+      const info = document.createElement("div");
+      info.classList.add("info");
+
+      const title = document.createElement("span");
+      title.classList.add("title");
+      title.textContent = item.title;
+
+      const date = document.createElement("span");
+      date.classList.add("date");
+      date.textContent = item.year;
+
+      // Append title and date to the info container
+      info.appendChild(title);
+      info.appendChild(date);
+
+      // Append img and info to the card
+      card.appendChild(img);
+      card.appendChild(info);
+      imagesWrapper.appendChild(card);
       // If you want to handle a third column:
       // else if (index < totalElementInColumn * 3) {
       //   column3.appendChild(figure3);
@@ -220,19 +260,19 @@ export class ProductDisplay {
     }
 
     // Populate content div
-    const newContent = document.getElementById("contentD");
-    content.forEach((item) => {
-      const contentItem = document.createElement("div");
-      contentItem.classList.add("content__item");
-      contentItem.innerHTML = `
-        <h2 class="content__item-title">${item.title}</h2>
-        <div class="content__item-text" style="text-align: left;">
-         <p>${item.year}</p>
-          <p>${item.description}</p>
-         
-        </div>`;
-      newContent.appendChild(contentItem);
-    });
+    // const newContent = document.getElementById("contentD");
+    // content.forEach((item) => {
+    //   const contentItem = document.createElement("div");
+    //   contentItem.classList.add("content__item");
+    //   contentItem.innerHTML = `
+    //     <h2 class="content__item-title">${item.title}</h2>
+    //     <div class="content__item-text" style="text-align: left;">
+    //      <p>${item.year}</p>
+    //       <p>${item.description}</p>
+
+    //     </div>`;
+    //   newContent.appendChild(contentItem);
+    // });
   }
 
   createFigure(item, index) {
@@ -257,52 +297,46 @@ export class ProductDisplay {
   }
 }
 
-function escapeSpecialChars(str) {
-  return str
-    .replace(/\\/g, "\\\\") // Escape backslashes
-    .replace(/'/g, "\\'") // Escape single quotes
-    .replace(/"/g, '\\"'); // Escape double quotes
-}
-
-// function expandImage(event) {
-//   const imageModal = document.getElementById("imageModal");
-//   const expandedImage = document.getElementById("expandedImage");
-
-//   // Extract the background image URL from the clicked element
-//   const target = event.target;
-//   if (target.classList.contains("column__item-img")) {
-//     const imageUrl = target.style.backgroundImage.slice(5, -2); // Remove 'url("...")'
-//     expandedImage.src = imageUrl;
-//     imageModal.style.display = "flex";
-//   }
-// }
-
-// window.closeModal = function () {
-//   const imageModal = document.getElementById("imageModal");
-//   const expandedImage = document.getElementById("expandedImage");
-
-//   // Hide the modal and reset the image src
-//   imageModal.style.display = "none";
-//   expandedImage.src = "data:image/gif;base64,R0lGODlhAQABAAAAACw="; // Reset to placeholder
-// };
-
-// function expandImage(event) {
-//   const imageModal = document.getElementById("imageModal");
-//   const expandedImage = document.getElementById("expandedImage");
-
-//   // Use background image URL from the clicked element
-//   const target = event.target;
-//   if (target.classList.contains("product-image")) {
-//     const imageUrl = target.style.backgroundImage.slice(5, -2); // Remove 'url("...")'
-//     expandedImage.src = imageUrl;
-//     imageModal.style.display = "flex";
-//   }
-// }
-
 // function closeModal() {
 //   const imageModal = document.getElementById("imageModal");
 //   imageModal.style.display = "none";
 // }
+
+window.loadFooterImages = function () {
+  const imagesWrapper = document.querySelector(".image-wrapper");
+  const leftArrow = document.querySelector(".left-arrow");
+  const rightArrow = document.querySelector(".right-arrow");
+  const contentDisplay = document.getElementById("content-display");
+
+  // Scroll amount
+  let scrollAmount = 0;
+  const scrollStep = 100;
+
+  // Left arrow click
+  leftArrow.addEventListener("click", () => {
+    scrollAmount = Math.max(scrollAmount - scrollStep, 0);
+    imagesWrapper.style.transform = `translateX(-${scrollAmount}px)`;
+  });
+
+  // Right arrow click
+  rightArrow.addEventListener("click", () => {
+    const maxScroll =
+      imagesWrapper.scrollWidth - imagesWrapper.parentElement.clientWidth;
+    scrollAmount = Math.min(scrollAmount + scrollStep, maxScroll);
+    imagesWrapper.style.transform = `translateX(-${scrollAmount}px)`;
+  });
+
+  // Handle image click to load content
+  const images = document.querySelectorAll(".image-wrapper img");
+  images.forEach((img) => {
+    img.addEventListener("click", () => {
+      const contentURL = img.getAttribute("data-content");
+
+      // Load the new content
+      contentDisplay.innerHTML = `<iframe src="${contentURL}" frameborder="0" style="width: 100%; height: 100%;"></iframe>`;
+    });
+  });
+};
 
 window.showPageContent = function (imageUrl, title, year) {
   console.log("calling showPageContent....!");
@@ -323,6 +357,7 @@ window.showPageContent = function (imageUrl, title, year) {
   productYear.textContent = year;
   // productDescription.textContent = title;
 
+  this.loadFooterImages();
   pageContent.style.display = "block"; // Display the page
 };
 

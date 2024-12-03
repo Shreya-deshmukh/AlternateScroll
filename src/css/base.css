@@ -216,6 +216,7 @@ main::after {
 }
 
 .column-wrap {
+	width:100%;
 	position: relative;
 	z-index: 1;
 	display: flex;
@@ -223,9 +224,11 @@ main::after {
 	/* padding: 5vh 0 15vh; */
 	padding: 0vh 0 11vh;
 
+
 }
 
 .column-wrap--height {
+	width:100%;
 	height: 100vh;
 	flex-direction: column-reverse;
 }
@@ -268,6 +271,8 @@ main::after {
 	background-size: cover;
 	background-position: 50% 20%;
 	backface-visibility: hidden;
+	border-radius:5px;
+
 }
 
 .column__item-caption {
@@ -719,7 +724,7 @@ body {
 	position: fixed;
 	left: 10px;
 	bottom: 10px;
-	font-size: 14px;
+	font-size: 32px;
 	font-weight: bold;
   }
   
@@ -781,6 +786,7 @@ height: 36px;
   .main-circle {
 	width: 30px;
 	height: 30px;
+	/* background: linear-gradient(180deg, #1B69FF 50%, #2AFC8A 50%); */
 	/* background-color: blue; */
 	border-radius: 50%;
 	cursor: pointer;
@@ -875,7 +881,10 @@ height: 36px;
 	background: white;
 	padding: 20px;
 	/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-	margin: 20px;
+	/* margin: 20px; */
+	    height: 100vh;
+    overflow: auto;
+
 }
 
 /* Ad Section */
@@ -906,23 +915,35 @@ height: 36px;
   }
 
 .product-title {
-	font-size: 24px;
+	/* font-size: 24px;
 	font-weight: bold;
-	margin-bottom: 5px;
+	
 	text-align: left;
+	padding: 25px 0px; */
+
+	font-family: "Rhymes Display Trial";
+font-size: 32px;
+font-weight: 300;
+line-height: 48px;
+letter-spacing: -0.03em;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+padding:"10px 0px";
+
 }
 
 .product-subtitle {
-	font-size: 21px;
+	font-size: 18px;
 	font-weight: 400;
-
+    font-family: 'ABC Monument Grotesk';
 	color: #666;
 	margin-bottom: 20px;
 	text-align: left;
 }
 
 .product-image {
-	width: 300px;
+	width: -webkit-fill-available;
 	height: 300px;
 	margin-bottom: 15px;
 	cursor: pointer;
@@ -930,9 +951,11 @@ height: 36px;
 }
 
 .product-description {
-	font-size: 21px;
+	font-size: 18px;
 	font-weight: 400;
-	color: #444;
+	font-family: 'ABC Monument Grotesk';
+
+	color: #444444;
 	line-height: 1.6;
 	margin-bottom: 20px;
 	text-align: left;
@@ -1004,4 +1027,117 @@ height: 36px;
 
 .back-button:hover {
 	background-color: #f0f0f0;
+}
+
+.logo-link{
+	width:-webkit-fill-available;
+}
+
+#image-footer {
+	margin-top: 50px;
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
+    /* padding: 10px; */
+    border-top: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container {
+    overflow: hidden;
+    flex: 1;
+}
+
+.image-wrapper {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 10px;
+}
+
+.image-wrapper img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.image-wrapper img:hover {
+    border-color: #000;
+}
+
+.arrow {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.arrow:hover {
+    background-color: #ddd;
+}
+
+.left-arrow {
+    margin-right: 10px;
+}
+
+.right-arrow {
+    margin-left: 10px;
+}
+
+.image-container img:hover {
+    border-color: #000;
+}
+.image-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 100px;
+}
+
+.image-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.image-card img:hover {
+    border-color: #000;
+}
+
+/* Container for title and date */
+.image-card .info {
+    display: flex;
+    justify-content: space-between; /* Align title to left and date to right */
+    width: 100%; /* Ensure it spans the width of the card */
+    font-size: 10px; /* Adjust font size */
+    color: #000000;
+}
+
+.image-card .title {
+    font-weight: 400;
+    text-align: left; /* Explicit left alignment */
+    margin: 0;
+}
+
+.image-card .date {
+    text-align: right; /* Explicit right alignment */
+    margin: 0;
+    color: #000000; /* Make date slightly lighter */
 }
