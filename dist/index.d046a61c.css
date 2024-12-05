@@ -936,7 +936,7 @@ footer .vertical-text {
   background-color: #f8f8f8;
   border-top: 1px solid #ccc;
   align-items: center;
-  padding: 35px 0;
+  padding: 25px 0 45px;
   display: flex;
   position: relative;
   overflow: hidden;
