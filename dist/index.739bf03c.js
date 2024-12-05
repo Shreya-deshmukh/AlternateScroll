@@ -774,19 +774,19 @@ class ProductDisplay {
         //   column3.appendChild(figure3);
         // }
         });
-        // Handle odd number of elements by repeating the first element in column 2
-        if (content.length % 2 === 1) {
-            const figure = this.createFigure(content[0], 100);
-            column2.innerHTML += `
-        <div class="column__item-imgwrap" data-pos="100">
-          <div class="column__item-img" style="background-image:url(${content[0].imageUrl})"></div>
-        </div>
-        <figcaption class="column__item-caption">
-          <span class="left">${content[0].title}</span>
-          <span class="right">${content[0].year}</span>
-        </figcaption>
-      `;
-        }
+    // Handle odd number of elements by repeating the first element in column 2
+    // if (content.length % 2 === 1) {
+    //   const figure = this.createFigure(content[0], 100);
+    //   column2.innerHTML += `
+    //     <div class="column__item-imgwrap" data-pos="100">
+    //       <div class="column__item-img" style="background-image:url(${content[0].imageUrl})"></div>
+    //     </div>
+    //     <figcaption class="column__item-caption">
+    //       <span class="left">${content[0].title}</span>
+    //       <span class="right">${content[0].year}</span>
+    //     </figcaption>
+    //   `;
+    // }
     // Populate content div
     // const newContent = document.getElementById("contentD");
     // content.forEach((item) => {
@@ -806,16 +806,15 @@ class ProductDisplay {
         figure.classList.add("column__item");
         figure.innerHTML = `
   <div class="column__item-imgwrap" data-pos="${index}">
-    <div class="column__item-title" style="text-align: center; margin-bottom: 10px;">
-      ${item.title}
-    </div>
+   
     <div class="column__item-img" 
          style="background-image: url(${item.imageUrl}); cursor: pointer;" 
          onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.year}')">
     </div>
-    <div class="column__item-info" style="display: flex; justify-content: flex-start; margin-top: 10px;">
-      <span class="year">${item.year}</span>
+     <div class="column__item-title" style="margin-bottom: 10px;">
+    <span class="left-align">${item.title}</span><span style="text-align:right"> ${item.year}</span>
     </div>
+   
   </div>
 `;
         return figure;

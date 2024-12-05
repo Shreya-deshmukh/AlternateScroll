@@ -21,7 +21,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	--ratio: 0.75;
-	--grid-item-height: 32vw;
+	--grid-item-height: 39vw;
 	--grid-item-width: calc(var(--grid-item-height) * var(--ratio));
 	--thumb-height: 5vw;
 	--thumb-width: calc(var(--thumb-height) * var(--ratio));
@@ -259,7 +259,7 @@ main::after {
 	/* width: var(--grid-item-width); */
 	height: var(--grid-item-height);
 	position: relative;
-	overflow: hidden;
+	/* overflow: hidden; */
 	border-radius: 6px;
 	cursor: pointer;
 	margin: 8vh 1vw 0;
@@ -734,7 +734,7 @@ text-align: left;
 }
 
 .right-align{
-	text-align: right;
+	text-align: right !important;
 }
 
 .popup {
@@ -813,8 +813,8 @@ height: 36px;
 
   
   .color-circle {
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	cursor: pointer;
 	gap: 20px;
@@ -951,21 +951,33 @@ padding:"10px 0px";
 }
 
 .product-description {
-	font-size: 18px;
-	font-weight: 400;
+	font-size: 20px;
+	font-weight: 500;
 	font-family: 'ABC Monument Grotesk';
 
 	color: #444444;
 	line-height: 1.6;
-	margin-bottom: 20px;
+	/* margin-bottom: 20px; */
 	text-align: left;
+
+
 }
 
-.product-link {
-	font-size: 16px;
-	color: #007BFF;
-	text-decoration: none;
-	font-weight: bold;
+.product-link{
+
+padding: 25px 0px;
+width: 100%;
+font-family: ABC Monument Grotesk;
+font-size: 24px;
+font-weight: 400;
+line-height: 28.8px;
+letter-spacing: -0.01em;
+text-align: left;
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
 }
 
 .product-link:hover {
@@ -1034,7 +1046,7 @@ padding:"10px 0px";
 }
 
 #image-footer {
-	margin-top: 50px;
+	/* margin-top: 50px; */
     display: flex;
     align-items: center;
     background-color: #f8f8f8;
