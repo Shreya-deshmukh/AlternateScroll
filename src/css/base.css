@@ -21,7 +21,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	--ratio: 0.75;
-	--grid-item-height: 39vw;
+	--grid-item-height: 32vw;
 	--grid-item-width: calc(var(--grid-item-height) * var(--ratio));
 	--thumb-height: 5vw;
 	--thumb-width: calc(var(--thumb-height) * var(--ratio));
@@ -428,7 +428,7 @@ main::after {
 }
 
 .button-back {
-	opacity: 0;
+	opacity: 1;
 	stroke: #000;
 	z-index: 1000;
 	cursor: pointer;
@@ -436,7 +436,9 @@ main::after {
 	grid-area: back;
 	align-self: start;
 	justify-self: start;
-	margin-left: 1.5rem;
+	margin-top: 15px;
+    margin-right: 10px;
+	/* margin-left: 1.5rem; */
 }
 
 .button-back svg {
@@ -834,8 +836,9 @@ height: 36px;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
-	display: none;
+	display: flex;
 	z-index: 2;
+	display: block;
   }
   
   /* .image-modal {
@@ -1049,15 +1052,15 @@ text-decoration-skip-ink: none;
 	/* margin-top: 50px; */
     display: flex;
     align-items: center;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
     padding: 25px 0px 65px 0px;
-    border-top: 1px solid #ccc;
+    /* border-top: 1px solid #ccc; */
     position: relative;
     overflow: hidden;
 }
 
 .image-container {
-    overflow: hidden;
+    overflow: scroll;
     flex: 1;
 }
 
@@ -1152,4 +1155,11 @@ text-decoration-skip-ink: none;
     text-align: right; /* Explicit right alignment */
     margin: 0;
     color: #000000; /* Make date slightly lighter */
+}
+
+.title-container {
+	display: flex
+	;
+		position: relative;
+		width: 100%;
 }

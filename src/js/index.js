@@ -219,6 +219,8 @@ export class ProductDisplay {
       img.alt = item.title;
       img.setAttribute("data-content", item.imageUrl);
 
+      img.setAttribute("img-title", item.title);
+      img.setAttribute("img-year", item.year);
       // Create container for title and date
       const info = document.createElement("div");
       info.classList.add("info");
@@ -303,8 +305,8 @@ export class ProductDisplay {
 
 function loadFooterImages() {
   const imagesWrapper = document.querySelector(".image-wrapper");
-  const leftArrow = document.querySelector(".left-arrow");
-  const rightArrow = document.querySelector(".right-arrow");
+  // const leftArrow = document.querySelector(".left-arrow");
+  // const rightArrow = document.querySelector(".right-arrow");
   const contentDisplay = document.getElementById("content-display");
 
   // Scroll amount
@@ -312,33 +314,56 @@ function loadFooterImages() {
   const scrollStep = 100;
 
   // Left arrow click
-  leftArrow.addEventListener("click", () => {
-    scrollAmount = Math.max(scrollAmount - scrollStep, 0);
-    imagesWrapper.style.transform = `translateX(-${scrollAmount}px)`;
-  });
+  // leftArrow.addEventListener("click", () => {
+  //   scrollAmount = Math.max(scrollAmount - scrollStep, 0);
+  //   imagesWrapper.style.transform = `translateX(-${scrollAmount}px)`;
+  // });
 
   // Right arrow click
-  rightArrow.addEventListener("click", () => {
-    const maxScroll =
-      imagesWrapper.scrollWidth - imagesWrapper.parentElement.clientWidth;
-    scrollAmount = Math.min(scrollAmount + scrollStep, maxScroll);
-    imagesWrapper.style.transform = `translateX(-${scrollAmount}px)`;
-  });
+  // rightArrow.addEventListener("click", () => {
+  //   const maxScroll =
+  //     imagesWrapper.scrollWidth - imagesWrapper.parentElement.clientWidth;
+  //   scrollAmount = Math.min(scrollAmount + scrollStep, maxScroll);
+  //   imagesWrapper.style.transform = `translateX(-${scrollAmount}px)`;
+  // });
 
   // Handle image click to load content
   const images = document.querySelectorAll(".image-wrapper img");
-  images.forEach((img) => {
-    img.addEventListener("click", () => {
-      const contentURL = img.getAttribute("data-content");
+  // images.forEach((img) => {
+  //   img.addEventListener("click", () => {
+  //     const contentURL = img.getAttribute("data-content");
 
-      // Load the new content
-      contentDisplay.innerHTML = `<iframe src="${contentURL}" frameborder="0" style="width: 100%; height: 100%;"></iframe>`;
+  //     // Load the new content
+  //     contentDisplay.innerHTML = `<iframe src="${contentURL}" frameborder="0" style="width: 100%; height: 100%;"></iframe>`;
+  //   });
+  // });
+
+  const imageModal = document.getElementById("product-image");
+  const productTitle = document.querySelector(".product-title");
+  const productYear = document.querySelector(".product-subtitle");
+
+  images.forEach((image) => {
+    image.addEventListener("click", function () {
+      imageModal.style.opacity = 0; // Start fade-out
+      setTimeout(() => {
+        console.log("image url", image.src, image);
+        imageModal.style.backgroundImage = `url(${image.src})`;
+        productTitle.textContent = image.getAttribute("img-title");
+        productYear.textContent = image.getAttribute("img-year");
+        imageModal.style.opacity = 1; // Start fade-in
+        const contentURL = image.getAttribute("data-content");
+
+        contentDisplay.innerHTML = `<iframe src="${contentURL}" frameborder="0" style="width: 100%; height: 100%;"></iframe>`;
+      }, 300);
+      images.forEach((img) => (img.style.opacity = 1)); // Reset all thumbnails
+      this.style.opacity = 0.5; // Highlight clicked thumbnail
     });
   });
 }
 
 window.showPageContent = function (imageUrl, title, year) {
   console.log("calling showPageContent....!");
+
   // const item = JSON.parse(element.replace(/\\'/g, "'").replace(/\\"/g, '"'));
 
   const pageContent = document.getElementById("pageContent");
@@ -358,6 +383,16 @@ window.showPageContent = function (imageUrl, title, year) {
 
   loadFooterImages();
   pageContent.style.display = "block"; // Display the page
+};
+
+window.backtohome = function () {
+  alert("back to home");
+  const pageContent = document.getElementById("pageContent");
+  const imageModal = document.getElementsByClassName("product-image");
+  const column = document.getElementById("columns");
+
+  pageContent.style.display = "none";
+  column.style.display = "block";
 };
 
 // Expand Image in Modal
@@ -612,9 +647,13 @@ window.selectColor = async function (color) {
 // Preload images then remove loader (loading class) from body
 preloadImages(".column__item-img").then(() => {
   setTimeout(() => {
+    document.getElementById("overlay").style.display = "none";
+
+    // document.querySelector("main").style.display = "block";
+
     document.body.classList.remove("loading");
 
     // Initialize the grid
     new Grid(document.querySelector(".columns"));
-  }, 1000);
+  }, 3000);
 });
