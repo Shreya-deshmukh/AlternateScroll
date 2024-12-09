@@ -404,15 +404,14 @@ main:after {
 }
 
 .button-back {
-  opacity: 1;
+  opacity: 0;
   stroke: #000;
   z-index: 1000;
   cursor: pointer;
   grid-area: back;
   place-self: start;
   width: 50px;
-  margin-top: 15px;
-  margin-right: 10px;
+  margin-left: 1.5rem;
 }
 
 .button-back svg {
@@ -779,7 +778,7 @@ footer .vertical-text {
   background-color: #00000080;
   width: 100%;
   height: 100%;
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -1037,11 +1036,5 @@ footer .vertical-text {
   text-align: right;
   color: #000;
   margin: 0;
-}
-
-.title-container {
-  width: 100%;
-  display: flex;
-  position: relative;
 }
 /*# sourceMappingURL=index.d046a61c.css.map */

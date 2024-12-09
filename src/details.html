@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Below A Grand</title>
+		<meta name="description" content="A layout with an alternate scroll on image columns and a content preview." />
+		<meta name="keywords" content="layout, scroll, locomotive scroll, column, javascript, web design" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="https://use.typekit.net/njz5ajv.css">
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+	</head>
+	<body class="loading" >
+		<h1>hello</h1>
+		<div id="overlay" onclick="toggleColorPopup()"></div>
+				<div class="sidebar">
+			<a href="/" class="logo-link"><img src="img/brandmark.png" alt="logo" style="width: -webkit-fill-available;"></img></a>
+			<div class="filters">
+			
+			  <div class="color-picker-container">
+				<div class="main-circle" onclick="toggleColorPopup()"></div>
+				<div class="color-popup" style="display: none;"></div>
+			  </div>
+			  <div id="overlay" onclick="toggleColorPopup()"></div>
+
+			</div>
+		  </div>
+		  
+		  <main style="width:100%">
+		
+			<h1>hi</h1>
+
+			<div class="page-container" id="pageContent" style="display:none;">
+
+				<div class="ad-section ad-desktop">
+					<a href="desktop-link" target="_blank">
+					  <img src="desktop-image.jpg" alt="Desktop Ad">
+					</a>
+					<img src="desktop-impression.jpg" alt="Desktop Impression Tracker" style="display:none;">
+				  </div>
+				
+				  <!-- Mobile Ad -->
+				  <div class="ad-section ad-mobile">
+					<a href="mobile-link" target="_blank">
+					  <img src="mobile-image.jpg" alt="Mobile Ad">
+					</a>
+					<img src="mobile-impression.jpg" alt="Mobile Impression Tracker" style="display:none;">
+				  </div>
+<!-- 
+				<div class="ad-section ad-desktop">
+					<a href="desktop-link" target="_blank">
+					  <img src="desktop-image.jpg" alt="Desktop Ad">
+					</a>
+					<img src="desktop-impression.jpg" alt="Desktop Impression Tracker" style="display:none;">
+			    </div>
+
+				<div class="ad-container ad-mobile">
+					<a href="mobile-link" target="_blank">
+					<img src="mobile-image.jpg" alt="Mobile Ad">
+					</a>
+					<img src="mobile-impression.jpg" alt="Mobile Impression Tracker" style="display:none;">
+				</div> -->
+		
+				<div class="product-section"><button class="unbutton button-back"><svg viewBox="0 0 50 9" width="100%"><path d="M0 4.5l5-3M0 4.5l5 3M50 4.5h-77"></path></svg></button>
+
+					<div class="product-title">Hermes</div>
+					<div class="product-image" id="product-image"style="background-image: url('https://via.placeholder.com/300');"></div>
+					<div class="product-subtitle">BLACK AND WHITE SILK SCARF<br>SGD 780</div>
+
+					<div class="product-description">
+						With its curved strap, its foam filling and its hand stitching, the “Numéro Dix” is inspired by the equestrian codes of saddlery. The woven edition is cut from a mottled woolen cloth combining two tones of thread and enhanced with leather finishes.
+					</div>
+					<div class="product-link" ><a href="https://bagaholicboy.com/">WHERE TO BUY</a></div>
+					<!-- <p class="product-link" ><a href="https://bagaholicboy.com/">WHERE TO BUY</a></p> -->
+				</div>
+
+				<footer id="image-footer">
+				
+					<div class="image-container" id="image-container">">
+						<div class="image-wrapper">
+					
+						</div>
+					</div>
+				</footer>
+			</div>
+		
+		  </main>
+
+		<footer>
+		  <div class="vertical-text"><a href="https://bagaholicboy.com/">B / A / G</a></div>
+		  </footer>
+          <script>
+			// Execute when the page is fully loaded
+			window.onload = function () {
+				// Remove the "loading" class from the body
+				// document.body.classList.remove("loading");
+	
+				// // Display the page content
+				// document.getElementById("pageContent").style.display = "block";
+	
+				console.log("Page is fully loaded, and custom logic has been executed.");
+			};
+		</script>
+
+		<!-- <script type="module" src="js/colorFilter.js"></script> -->
+		<script>
+
+			window.addEventListener("load", function() {
+				console.log("Page is fully loaded");
+			});
+
+			window.onload = function() {
+
+				alert("hello");
+				// Get the current window URL
+				const currentUrl = window.location.href;
+	
+				// Parse the URL
+				const url = new URL(currentUrl);
+	
+				// Get the image URL from the query parameters
+				const imageUrl = url.searchParams.get('imageURL'); // Example: ?image=your-image-url
+				const title = url.searchParams.get('title'); // Example: ?title=your-title
+				const year = url.searchParams.get('year'); // Example: ?year=your-year
+	
+				if (imageUrl) {
+					const pageContent = document.getElementById("pageContent");
+                    const imageModal = document.getElementById("product-image");
+					const column = document.getElementById("columns");
+					const productTitle = document.querySelector(".product-title");
+					const productYear = document.querySelector(".product-subtitle");
+					const productDescription = document.querySelector(".product-description");
+
+					imageModal.style.backgroundImage = `url(${imageUrl})`;
+
+					productTitle.textContent = title;
+					productYear.textContent = year;
+  // productDescription.textContent = title;
+
+                    loadFooterImages();
+				} else {
+					// Handle missing or invalid image URL
+					document.getElementById('image-container').textContent = 'No image URL provided.';
+				}
+			};
+		</script>
+	</body>
+</html>
