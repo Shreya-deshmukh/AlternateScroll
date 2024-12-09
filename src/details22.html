@@ -42,7 +42,6 @@
 					<img src="desktop-impression.jpg" alt="Desktop Impression Tracker" style="display:none;">
 				  </div>
 				
-				  <!-- Mobile Ad -->
 				  <div class="ad-section ad-mobile">
 					<a href="mobile-link" target="_blank">
 					  <img src="mobile-image.jpg" alt="Mobile Ad">
@@ -80,7 +79,7 @@
 				<footer id="image-footer">
 				
 					<div class="image-container" id="image-container">">
-						<div class="image-wrapper">
+						<div class="image-wrapper" id="image-wrapper">
 					
 						</div>
 					</div>
@@ -104,6 +103,7 @@
 				console.log("Page is fully loaded, and custom logic has been executed.");
 			};
 		</script>
+		<script type="module" src="js/index.js"></script>
 
 		<!-- <script type="module" src="js/colorFilter.js"></script> -->
 		<script>
@@ -114,7 +114,7 @@
 
 			window.onload = function() {
 
-				alert("hello");
+				alert("hello page");
 				// Get the current window URL
 				const currentUrl = window.location.href;
 	

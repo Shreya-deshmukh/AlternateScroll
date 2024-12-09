@@ -802,12 +802,13 @@ class ProductDisplay {
     // });
     }
     createFigure(item, index) {
+        //alert("2");
         const figure = document.createElement("figure");
         figure.classList.add("column__item");
         figure.innerHTML = `
   <div class="column__item-imgwrap" data-pos="${index}">
    
-  <a href="./details.html?title=${item.title}&year=${item.year}&description=${item.description}&imageUrl=${encodeURIComponent(item.imageUrl)}" class="column__item-link" >
+  <a href="./details22.html?title=${item.title}&year=${item.year}&description=${item.description}&imageUrl=${encodeURIComponent(item.imageUrl)}" class="column__item-link" >
     <div class="column__item-img" 
          style="background-image: url(${item.imageUrl}); cursor: pointer;" 
        >
@@ -829,15 +830,18 @@ class ProductDisplay {
 const productDisplayInstance = new ProductDisplay();
 async function getImages() {
     const content = await productDisplayInstance.fetchContent("");
-    console.log("content", content);
+    const imagesWrapper = document.querySelector(".image-wrapper");
     content.forEach((item, index)=>{
         //populate footer
-        const imagesWrapper = document.querySelector(".image-wrapper");
+        console.log("content", item);
+        console.log("imagesWrapper", imagesWrapper);
         const card = document.createElement("div");
         card.classList.add("image-card");
+        console.log("card", card);
         const img = document.createElement("img");
         img.src = item.imageUrl;
         img.alt = item.title;
+        console.log("img", img);
         img.setAttribute("data-content", item.imageUrl);
         img.setAttribute("img-title", item.title);
         img.setAttribute("img-year", item.year);
@@ -850,12 +854,15 @@ async function getImages() {
         const date = document.createElement("span");
         date.classList.add("date");
         date.textContent = item.year;
+        console.log("card", card);
         // Append title and date to the info container
         info.appendChild(title);
         info.appendChild(date);
         // Append img and info to the card
         card.appendChild(img);
+        console.log("yha th", img);
         card.appendChild(info);
+        console.log("yha info", info);
         imagesWrapper.appendChild(card);
     });
 }
@@ -870,6 +877,7 @@ function loadFooterImages() {
     console.log("images", images);
     images.forEach((image)=>{
         image.addEventListener("click", function() {
+            console.log(image, "inside funct");
             imageModal.style.opacity = 0; // Start fade-out
             setTimeout(()=>{
                 console.log("image url", image.src, image);
@@ -886,7 +894,8 @@ function loadFooterImages() {
     });
 }
 window.showDetails = function(imageUrl, title, year) {
-    const targetUrl = `../src/details.html?title=${title}&year=${year}&imageUrl=${encodeURIComponent(imageUrl)}`;
+    alert("1");
+    const targetUrl = `./details22.html?title=${title}&year=${year}&imageUrl=${encodeURIComponent(imageUrl)}`;
     // Navigate to the new page
     window.location.href = targetUrl;
 };
