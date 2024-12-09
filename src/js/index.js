@@ -338,8 +338,15 @@ async function getImages() {
 
   content.forEach((item, index) => {
     //populate footer
+<<<<<<< Updated upstream
     console.log("content", item);
     console.log("imagesWrapper", imagesWrapper);
+=======
+    console.log("item", item);
+
+    const imagesWrapper = document.querySelector(".image-wrapper");
+
+>>>>>>> Stashed changes
     const card = document.createElement("div");
     card.classList.add("image-card");
     console.log("card", card);
@@ -568,7 +575,7 @@ if (window.location.pathname === "/") {
     }, 3000);
   });
 } else {
-  // alert("This is not the home page");
+  alert("This is not the home page");
   document.body.classList.remove("loading");
 
   showPageContent();
