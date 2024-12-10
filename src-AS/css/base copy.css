@@ -428,7 +428,7 @@ main::after {
 }
 
 .button-back {
-	opacity: 1;
+	opacity: 0;
 	stroke: #000;
 	z-index: 1000;
 	cursor: pointer;
@@ -436,9 +436,7 @@ main::after {
 	grid-area: back;
 	align-self: start;
 	justify-self: start;
-	margin-top: 15px;
-    margin-right: 10px;
-	/* margin-left: 1.5rem; */
+	margin-left: 1.5rem;
 }
 
 .button-back svg {
@@ -836,9 +834,8 @@ height: 36px;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
+	display: none;
 	z-index: 2;
-	display: block;
   }
   
   /* .image-modal {
@@ -894,11 +891,11 @@ height: 36px;
 .ad-section {
 	width: 100%;
 	height: 150px;
-	/* background-color: #e0e0e0; */
-	display: none;
+	background-color: #e0e0e0;
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* color: #888; */
+	color: #888;
 	font-size: 18px;
 	margin-bottom: 20px;
 }
@@ -1052,15 +1049,15 @@ text-decoration-skip-ink: none;
 	/* margin-top: 50px; */
     display: flex;
     align-items: center;
-    /* background-color: #f8f8f8; */
+    background-color: #f8f8f8;
     padding: 25px 0px 65px 0px;
-    /* border-top: 1px solid #ccc; */
+    border-top: 1px solid #ccc;
     position: relative;
     overflow: hidden;
 }
 
 .image-container {
-    overflow: scroll;
+    overflow: hidden;
     flex: 1;
 }
 
@@ -1156,25 +1153,3 @@ text-decoration-skip-ink: none;
     margin: 0;
     color: #000000; /* Make date slightly lighter */
 }
-
-.title-container {
-	display: flex
-	;
-		position: relative;
-		width: 100%;
-}
-
-.ad-section img {
-	width: 100%;
-	height:-webkit-fill-available ;
-  }
-  @media (min-width: 768px) {
-	.ad-desktop {
-	  display: block;
-	}
-  }
-  @media (max-width: 767px) {
-	.ad-mobile {
-	  display: block;
-	}
-  }

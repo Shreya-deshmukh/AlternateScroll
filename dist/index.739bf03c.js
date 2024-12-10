@@ -813,8 +813,8 @@ class ProductDisplay {
          style="background-image: url(${item.imageUrl}); cursor: pointer;" 
          onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.year}')">
     </div>
-     <div class="column__item-title" style="margin-bottom: 10px;">
-    <span class="left-align">${item.title}</span><span style="text-align:right"> ${item.year}</span>
+     <div class="column__item-title" style="display: flex; justify-content: space-between;">
+    <span style="text-align:left">${item.title}</span><span style="text-align:right"> ${item.year}</span>
     </div>
    
   </div>
@@ -889,6 +889,7 @@ window.showPageContent = function(imageUrl, title, year) {
     productTitle.textContent = title;
     productYear.textContent = year;
     // productDescription.textContent = title;
+    fetchAds();
     loadFooterImages();
     pageContent.style.display = "block"; // Display the page
 };
@@ -900,6 +901,29 @@ window.backtohome = function() {
     pageContent.style.display = "none";
     column.style.display = "block";
 };
+async function fetchAds() {
+    try {
+        let url = `https://cdn.contentful.com/spaces/zggawij42o34/entries?access_token=_SSMqARTowTpHiEi6Q3XJE_wPJzaGqhjYPZu-ljMMVM&content_type=productAd`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data) {
+            const ad = data.items[0].fields; // Assuming single ad
+            const img = data.includes.Asset[0].fields.file.url;
+            // Desktop Ad
+            document.getElementById("ad-desktop").innerHTML = `<a href="${ad.externalLink}" target="_blank">
+              <img src="${img}" alt="Desktop Ad">
+       </a>
+            <img src="${ad.impressionTag}" alt="Desktop Impression Tracker" style="display:none;">`;
+            // Mobile Ad
+            document.getElementById("ad-mobile").innerHTML = `<a href="${ad.externalLinkmobile}" target="_blank">
+              <img src="${img}" alt="Mobile Ad">
+            </a>
+            <img src="${ad.impressionTagmobile}" alt="Mobile Impression Tracker" style="display:none;">`;
+        }
+    } catch (error) {
+        console.error("Error fetching ads:", error);
+    }
+}
 // Expand Image in Modal
 window.expandImage = function(event) {
     const pageContent = document.getElementById("pageContent");
