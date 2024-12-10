@@ -85,11 +85,7 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 
 				<footer id="image-footer">
 				
-					<div class="image-container" id="image-container">">
-						<div class="image-wrapper">
 					
-						</div>
-					</div>
 				</footer>
 			</div>
 		
@@ -111,34 +107,35 @@ window.onload = function() {
 		<script src="/index.739bf03c.js" defer=""></script>
 
 		<!-- <script type="module" src="js/colorFilter.js"></script> -->
-		<script>window.addEventListener("load", function() {
-    console.log("Page is fully loaded");
-});
-window.onload = function() {
-    alert("hello");
-    // Get the current window URL
-    const currentUrl = window.location.href;
-    // Parse the URL
-    const url = new URL(currentUrl);
-    // Get the image URL from the query parameters
-    const imageUrl = url.searchParams.get('imageURL'); // Example: ?image=your-image-url
-    const title = url.searchParams.get('title'); // Example: ?title=your-title
-    const year = url.searchParams.get('year'); // Example: ?year=your-year
-    if (imageUrl) {
-        const pageContent = document.getElementById("pageContent");
-        const imageModal = document.getElementById("product-image");
-        const column = document.getElementById("columns");
-        const productTitle = document.querySelector(".product-title");
-        const productYear = document.querySelector(".product-subtitle");
-        const productDescription = document.querySelector(".product-description");
-        imageModal.style.backgroundImage = `url(${imageUrl})`;
-        productTitle.textContent = title;
-        productYear.textContent = year;
-        // productDescription.textContent = title;
-        loadFooterImages();
-    } else // Handle missing or invalid image URL
-    document.getElementById('image-container').textContent = 'No image URL provided.';
-};
+		<script>// window.addEventListener("load", function() {
+// 	console.log("Page is fully loaded");
+// });
+// window.onload = function() {
+// 	alert("hello page");
+// 	// Get the current window URL
+// 	const currentUrl = window.location.href;
+// 	// Parse the URL
+// 	const url = new URL(currentUrl);
+// 	// Get the image URL from the query parameters
+// 	const imageUrl = url.searchParams.get('imageURL'); // Example: ?image=your-image-url
+// 	const title = url.searchParams.get('title'); // Example: ?title=your-title
+// 	const year = url.searchParams.get('year'); // Example: ?year=your-year
+// 	console.log(imageUrl,"********************");
+// 	if (imageUrl) {
+// 		const pageContent = document.getElementById("pageContent");
+//         const imageModal = document.getElementById("product-image");
+// 		const column = document.getElementById("columns");
+// 		const productTitle = document.querySelector(".product-title");
+// 		const productYear = document.querySelector(".product-subtitle");
+// 		const productDescription = document.querySelector(".product-description");
+// 		imageModal.style.backgroundImage = `url(${imageUrl})`;
+// 		productTitle.textContent = title;
+// 		productYear.textContent = year;
+//         loadFooterImages();
+// 	} else {
+// 		document.getElementById('image-container').textContent = 'No image URL provided.';
+// 	}
+// };
 
 </script>
 	</body>

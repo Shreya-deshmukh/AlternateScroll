@@ -404,14 +404,15 @@ main:after {
 }
 
 .button-back {
-  opacity: 0;
+  opacity: 1;
   stroke: #000;
   z-index: 1000;
   cursor: pointer;
   grid-area: back;
   place-self: start;
   width: 50px;
-  margin-left: 1.5rem;
+  margin-top: 15px;
+  margin-right: 10px;
 }
 
 .button-back svg {
@@ -778,7 +779,7 @@ footer .vertical-text {
   background-color: #00000080;
   width: 100%;
   height: 100%;
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -793,15 +794,13 @@ footer .vertical-text {
 }
 
 .ad-section {
-  color: #888;
-  background-color: #e0e0e0;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 150px;
   margin-bottom: 20px;
   font-size: 18px;
-  display: flex;
+  display: none;
 }
 
 .product-section {
@@ -1036,5 +1035,28 @@ footer .vertical-text {
   text-align: right;
   color: #000;
   margin: 0;
+}
+
+.title-container {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.ad-section img {
+  width: 100%;
+  height: -webkit-fill-available;
+}
+
+@media (width >= 768px) {
+  .ad-desktop {
+    display: block;
+  }
+}
+
+@media (width <= 767px) {
+  .ad-mobile {
+    display: block;
+  }
 }
 /*# sourceMappingURL=index.d046a61c.css.map */

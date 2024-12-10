@@ -334,19 +334,14 @@ const productDisplayInstance = new ProductDisplay();
 
 async function getImages() {
   const content = await productDisplayInstance.fetchContent("");
-  const imagesWrapper = document.querySelector(".image-wrapper");
+  const imagesWrapper = document.getElementById("image-wrapper");
 
   content.forEach((item, index) => {
     //populate footer
-<<<<<<< Updated upstream
-    console.log("content", item);
-    console.log("imagesWrapper", imagesWrapper);
-=======
     console.log("item", item);
 
-    const imagesWrapper = document.querySelector(".image-wrapper");
+    console.log("imagesWrapper", imagesWrapper);
 
->>>>>>> Stashed changes
     const card = document.createElement("div");
     card.classList.add("image-card");
     console.log("card", card);
@@ -387,6 +382,7 @@ async function getImages() {
 }
 
 function loadFooterImages() {
+  console.log("inside load footer");
   let Footerimages = getImages();
 
   const imagesWrapper = document.querySelector(".image-wrapper");
