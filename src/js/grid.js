@@ -160,7 +160,7 @@ export class Grid {
           .to(gridItem.DOM.img.outer, { scaleY: 0.95, scaleX: 0.88 }, "start")
           .to(
             gridItem.DOM.img.inner,
-            { ease: "power4", scaleY: 1.2, scaleX: 1.7 },
+            { ease: "power4", scaleY: 1.0, scaleX: 1.2 },
             "start"
           );
       });

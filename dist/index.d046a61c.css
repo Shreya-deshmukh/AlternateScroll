@@ -794,13 +794,15 @@ footer .vertical-text {
 }
 
 .ad-section {
+  color: #888;
+  background-color: #e0e0e0;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 150px;
   margin-bottom: 20px;
   font-size: 18px;
-  display: none;
+  display: flex;
 }
 
 .product-section {
@@ -957,7 +959,6 @@ footer .vertical-text {
   border-radius: 5px;
   width: 80px;
   height: 80px;
-  transition: border-color .3s;
 }
 
 .image-wrapper img:hover {
@@ -1041,22 +1042,5 @@ footer .vertical-text {
   width: 100%;
   display: flex;
   position: relative;
-}
-
-.ad-section img {
-  width: 100%;
-  height: -webkit-fill-available;
-}
-
-@media (width >= 768px) {
-  .ad-desktop {
-    display: block;
-  }
-}
-
-@media (width <= 767px) {
-  .ad-mobile {
-    display: block;
-  }
 }
 /*# sourceMappingURL=index.d046a61c.css.map */

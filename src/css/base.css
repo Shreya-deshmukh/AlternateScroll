@@ -894,11 +894,11 @@ height: 36px;
 .ad-section {
 	width: 100%;
 	height: 150px;
-	/* background-color: #e0e0e0; */
-	display: none;
+	background-color: #e0e0e0;
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* color: #888; */
+	color: #888;
 	font-size: 18px;
 	margin-bottom: 20px;
 }
@@ -1077,7 +1077,7 @@ text-decoration-skip-ink: none;
     cursor: pointer;
     border: 2px solid transparent;
     border-radius: 5px;
-    transition: border-color 0.3s ease;
+    /* transition: border-color 0.3s ease; */
 }
 
 .image-wrapper img:hover {
@@ -1163,18 +1163,3 @@ text-decoration-skip-ink: none;
 		position: relative;
 		width: 100%;
 }
-
-.ad-section img {
-	width: 100%;
-	height:-webkit-fill-available ;
-  }
-  @media (min-width: 768px) {
-	.ad-desktop {
-	  display: block;
-	}
-  }
-  @media (max-width: 767px) {
-	.ad-mobile {
-	  display: block;
-	}
-  }
