@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Below A Grand</title>
-		
-		<meta name="author" content="Codrops">
-		<link rel="shortcut icon" href="/favicon.824cf0c5.ico">
+		<meta name="description" content="A layout with an alternate scroll on image columns and a content preview." />
+		<meta name="keywords" content="layout, scroll, locomotive scroll, column, javascript, web design" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
 		<link rel="stylesheet" href="https://use.typekit.net/njz5ajv.css">
-		<link rel="stylesheet" type="text/css" href="/index.d046a61c.css">
-		<script>document.documentElement.className = "js";
-var supportsCssVars = function() {
-    var e, t = document.createElement("style");
-    return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e;
-};
-supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
-
-</script>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 	</head>
-	<body class="loading">
+	<body class="loading" >
 		<div id="overlay"></div>
 				<div class="sidebar">
-			<a href="/" class="logo-link"><img src="/brandmark.7c226c5d.png" alt="logo" style="width: -webkit-fill-available"></a>
+			<a href="/" class="logo-link"><img src="img/brandmark.png" alt="logo" style="width: -webkit-fill-available;"></img></a>
 			<div class="filters">
 			
-			  <div class="color-picker-container" id="color-picker">
+			  <div class="color-picker-container">
 				<div class="main-circle" onclick="toggleColorPopup()"></div>
-				<div class="color-popup" style="display: none"></div>
+				<div class="color-popup" style="display: none;"></div>
 			  </div>
 
 			</div>
@@ -38,9 +32,9 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 		  </div>
 		  </main> -->
 
-		  <main style="width: 100%">
+		  <main style="width:100%">
 		
-			<div class="columns" id="columns">
+			<div class="columns" id="columns" data-scroll-container>
 			
 
 				<div class="column-wrap column-wrap--height">
@@ -50,14 +44,14 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 				</div>
 
 				<div class="column-wrap">
-					<div class="column" id="column-2" data-scroll-section="">
+					<div class="column" id="column-2" data-scroll-section>
 					</div>
 				</div>
 
 <!-- <div class="column" id="column-3"></div> -->
 				</div>
 
-			
+			</div>
 
 			<!-- <div id="imageModal" class="image-modal" style="display: none;">
 				<div class="image-modal-content">
@@ -67,27 +61,20 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 			</div> -->
 
 
-			<div class="page-container" id="pageContent" style="display: none">
-				<div class="ad-section ad-desktop" id="ad-desktop">
-					<!-- Fetched content will go here -->
-				  </div>
-				
-				  <!-- Mobile Ad Placeholder -->
-				  <div class="ad-section ad-mobile" id="ad-mobile">
-					<!-- Fetched content will go here -->
-				  </div>
+			<div class="page-container" id="pageContent" style="display:none;">
+				<div class="ad-section">AD HERE</div>
 		
 				<div class="product-section">
-					<div class="title-container"><button class="unbutton button-back"><a href="/index.html"><svg viewbox="0 0 50 9" width="100%"><path d="M0 4.5l5-3M0 4.5l5 3M50 4.5h-77"></path></svg></a></button>
-					<div class="product-title">Hermesss</div>
+					<div class="title-container"><button class="unbutton button-back"><a href="/src/index.html"><svg viewBox="0 0 50 9" width="100%"><path d="M0 4.5l5-3M0 4.5l5 3M50 4.5h-77"></path></svg></a></button>
+					<div class="product-title">Hermes</div>
                     </div>
-										<div class="product-image" id="product-image" style="background-image: url(&quot;https://via.placeholder.com/300&quot;)"></div>
+										<div class="product-image" id="product-image"style="background-image: url('https://via.placeholder.com/300');"></div>
 					<div class="product-subtitle">BLACK AND WHITE SILK SCARF<br>SGD 780</div>
 
 					<div class="product-description">
 						With its curved strap, its foam filling and its hand stitching, the “Numéro Dix” is inspired by the equestrian codes of saddlery. The woven edition is cut from a mottled woolen cloth combining two tones of thread and enhanced with leather finishes.
 					</div>
-					<div class="product-link"><a href="https://bagaholicboy.com/">WHERE TO BUY</a></div>
+					<div class="product-link" ><a href="https://bagaholicboy.com/">WHERE TO BUY</a></div>
 					<!-- <p class="product-link" ><a href="https://bagaholicboy.com/">WHERE TO BUY</a></p> -->
 				</div>
 
@@ -111,7 +98,7 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 					<!-- <button class="arrow right-arrow">&#8594;</button> -->
 				</footer>
 			</div>
-
+		
 			<!-- <div id="imageModal" class="image-modal">
 				<div class="image-modal-content">
 					<button class="back-button" onclick="closeModal()">×</button>
@@ -127,16 +114,20 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 			<div class="vertical-text"><a href="https://bagaholicboy.com/">B / A / G</a></div>
 		  </footer>
 
-		<script src="/index.739bf03c.js" defer=""></script>
-		<script src="/index.7cb0495c.js" defer=""></script>
+		<script type="module" src="js/index.js"></script>
+		<script type="module" src="js/colorFilter.js"></script>
 
-		<script>// function toggleColorPopup() {
+		<script>
+
+// function toggleColorPopup() {
 // 	const popup = document.querySelector('.color-popup');
 //       const overlay = document.getElementById('overlay');
 //       const isPopupVisible = popup.style.display === 'flex';
+
 //       popup.style.display = isPopupVisible ? 'none' : 'flex';
 //       overlay.style.display = isPopupVisible ? 'none' : 'flex';
 //   }
+
 //   function selectColor(color) {
 // 	alert("select color");
 //     console.log(`Selected color: ${color}`);
@@ -144,18 +135,23 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 //     document.querySelector('.main-circle').style.backgroundColor = color;
 //     document.querySelector('.color-popup').style.display = 'none';
 //   }
+
 //         document.addEventListener("DOMContentLoaded", () => {
+
 // 			const container = document.querySelector('.columns');
 // 			const contentDiv = document.querySelector('.content');
+
 // 			const columns = [
 // 				document.getElementById('column1'),
 // 				document.getElementById('column2'),
 // 				// document.getElementById('column3')
 // 			];
+
 // 			const fetchContent = async () => {
 //             	const SPACE_ID = 'zggawij42o34';
 // 				const ACCESS_TOKEN = '_SSMqARTowTpHiEi6Q3XJE_wPJzaGqhjYPZu-ljMMVM';
 // 				const CONTENT_TYPE = 'alternateImageList';
+
 //             const response = await fetch(`https://cdn.contentful.com/spaces/${SPACE_ID}/entries?access_token=${ACCESS_TOKEN}&content_type=${CONTENT_TYPE}`);
 //             const data = await response.json();
 //             return data.items.map(item => ({
@@ -165,17 +161,24 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 // 				description:item.fields.description
 //             })); // Adjust based on your Contentful model
 //         };
+
 // 		const populateColumns = async () => {
 //             const content = await fetchContent();
+
 //             const column1 = document.getElementById('column-1');
 //             const column2 = document.getElementById('column-2');
 //             // const column3 = document.getElementById('column-3');
+
 // 			const newContent = document.getElementById('contentD');
+
 // 			const totalElementInColumn = content.length/2;
+
 //             content.forEach((item, index,) => {
+
 // 				// console.log("inside loop");
 //                 const figure = document.createElement('figure');
 //                 figure.classList.add('column__item');
+
 //                 figure.innerHTML = `
 //                     <div class="column__item-imgwrap" data-pos="${index}">
 //                         <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
@@ -185,8 +188,10 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 //                         <span class="right-align">${item.year}</span>
 //                     </figcaption>
 //                 `;
+
 // 				const figure2 = document.createElement('figure');
 //                 figure2.classList.add('column__item');
+
 //                 figure2.innerHTML = `
 //                     <div class="column__item-imgwrap" data-pos="${index}">
 //                         <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
@@ -196,8 +201,10 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 //                         <span class="right-align">${item.year}</span>
 //                     </figcaption>
 //                 `;
+
 // 				const figure3 = document.createElement('figure');
 //                 figure3.classList.add('column__item');
+
 //                 figure3.innerHTML = `
 //                     <div class="column__item-imgwrap" data-pos="${index+2}">
 //                         <div class="column__item-img" style="background-image:url(${item.imageUrl})"></div>
@@ -207,6 +214,8 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 //                         <span>${item.year}</span>
 //                     </figcaption>
 //                 `;
+				
+            
 //                  if (index < totalElementInColumn){
 // 					column1.appendChild(figure);
 // 					console.log("cond1");
@@ -214,26 +223,37 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 //                 else if (index < totalElementInColumn*2){
 //                 column2.appendChild(figure2);
 // 				console.log("cond2");
+
 // 				} 
 //                 // else if(index < totalElementInColumn*3) {
 // 				// 	column3.appendChild(figure3);
 // 				// 	console.log("cond3");
+
 // 				// }
+
+
 // 				const div = document.createElement('div');
 //                 div.classList.add('content__item');
+
 // 				div.innerHTML = `
+				
 // 				<h2 class="content__item-title">${item.title}</h2>
 // 				<div class="content__item-text">
 // 					<span class="left-align">${item.description}</span>
 // 					<span class="right-align">${item.year}</span>
 // 				</div> `;
 // 				// console.log(div);
+
+
 // 			newContent.append(div);
+				
+
 //             });
 //                   console.log("mode",content.length,content.length%2);
 // 			if(content.length%2==1){
 // 				console.log("inside condiiiton",content[0]);
 // 				const latestColumn2 = document.getElementById('column-2');
+
 // 					// Add the new HTML content directly
 // 					latestColumn2.innerHTML += `
 // 						<div class="column__item-imgwrap" data-pos="100">
@@ -245,8 +265,11 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 // 						</figcaption>
 // 					`;
 // 			}
+
 // 			// const figureStatic = document.createElement('figure');
 // 			// figureStatic.classList.add('column__item');
+
+
 // 			// figureStatic.innerHTML = `
 //             //         <div class="column__item-imgwrap" data-pos="">
 //             //             <div class="column__item-img" style="background-image:url(../src/img/product-tile-image.png)"></div>
@@ -256,12 +279,12 @@ supportsCssVars() || alert("Please view this demo in a modern browser that suppo
 //             //             <span></span>
 //             //         </figcaption>
 //             //     `;
+
 // 			// 	column2.appendChild(figureStatic);
 //         };
 // populateColumns();
 // 	});
-// 		
 
-</script>
+// 		</script>
 	</body>
 </html>

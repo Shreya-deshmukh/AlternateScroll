@@ -8,13 +8,6 @@
 	font-size: 13px;
 }
 
-@font-face {
-    font-family: 'ABC Monument Grotesk'; /* Replace with your desired font name */
-    src: url('../fonts/ABCMonumentGrotesk-Regular.woff') format('woff'); /* Adjust the path as needed */
-    font-weight: normal; /* Use 'normal', 'bold', or specific values like 400, 700 */
-    font-style: normal; /* Options: 'normal', 'italic' */
-}
-
 body {
 	margin: 0;
 	--color-text: #000;
@@ -120,7 +113,6 @@ a:focus-visible {
 }
 
 main {
-	width: 100%;
 	overflow: hidden;
 	position: relative;
 }
@@ -436,7 +428,7 @@ main::after {
 }
 
 .button-back {
-	opacity: 1;
+	opacity: 0;
 	stroke: #000;
 	z-index: 1000;
 	cursor: pointer;
@@ -444,9 +436,7 @@ main::after {
 	grid-area: back;
 	align-self: start;
 	justify-self: start;
-	margin-top: 15px;
-    margin-right: 10px;
-	/* margin-left: 1.5rem; */
+	margin-left: 1.5rem;
 }
 
 .button-back svg {
@@ -808,13 +798,13 @@ height: 36px;
 	display: none;
 	position: absolute;
 	flex-direction: column;
-	/* padding: 10px 5px; */
+	padding: 10px 5px;
 	background-color: #ffffff;
 	margin: auto;
 	/* box-shadow: 0 0 80px 40px #ffffff; */
     /* top: 50px; */
 	left: 0;
-	display: none;
+	display: flex;
 	gap: 5px;
 	z-index: 3;
 	border-top: 1px solid lightgray;
@@ -844,9 +834,8 @@ height: 36px;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
+	display: none;
 	z-index: 2;
-	display: block;
   }
   
   /* .image-modal {
@@ -902,11 +891,11 @@ height: 36px;
 .ad-section {
 	width: 100%;
 	height: 150px;
-	/* background-color: #e0e0e0; */
-	display: none;
+	background-color: #e0e0e0;
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* color: #888; */
+	color: #888;
 	font-size: 18px;
 	margin-bottom: 20px;
 }
@@ -948,10 +937,9 @@ padding:"10px 0px";
 	font-size: 18px;
 	font-weight: 400;
     font-family: 'ABC Monument Grotesk';
-	color: #000000;
+	color: #666;
 	margin-bottom: 20px;
 	text-align: left;
-	
 }
 
 .product-image {
@@ -963,23 +951,16 @@ padding:"10px 0px";
 }
 
 .product-description {
-	/* font-size: 20px;
+	font-size: 20px;
 	font-weight: 500;
 	font-family: 'ABC Monument Grotesk';
 
 	color: #444444;
 	line-height: 1.6;
-	text-align: left; */
-	color: #444444;
-	/* font-family: ABC Monument Grotesk sans-serif; */
-font-size: 21px;
-font-weight: 400;
-line-height: 27.3px;
-letter-spacing: -0.01em;
-text-align: left;
-text-underline-position: from-font;
-text-decoration-skip-ink: none;
-padding: 30px 0px;
+	/* margin-bottom: 20px; */
+	text-align: left;
+
+
 }
 
 .product-link{
@@ -1063,23 +1044,20 @@ text-decoration-skip-ink: none;
 .logo-link{
 	width:-webkit-fill-available;
 }
-img{
-	width:100%;
-}
 
 #image-footer {
 	/* margin-top: 50px; */
     display: flex;
     align-items: center;
-    /* background-color: #f8f8f8; */
+    background-color: #f8f8f8;
     padding: 25px 0px 65px 0px;
-    /* border-top: 1px solid #ccc; */
+    border-top: 1px solid #ccc;
     position: relative;
     overflow: hidden;
 }
 
 .image-container {
-    overflow: scroll;
+    overflow: hidden;
     flex: 1;
 }
 
@@ -1175,25 +1153,3 @@ img{
     margin: 0;
     color: #000000; /* Make date slightly lighter */
 }
-
-.title-container {
-	display: flex
-	;
-		position: relative;
-		width: 100%;
-}
-
-.ad-section img {
-	width: 100%;
-	height:-webkit-fill-available ;
-  }
-  @media (min-width: 768px) {
-	.ad-desktop {
-	  display: block;
-	}
-  }
-  @media (max-width: 767px) {
-	.ad-mobile {
-	  display: block;
-	}
-  }

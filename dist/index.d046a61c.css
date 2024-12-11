@@ -6,6 +6,13 @@
   font-size: 13px;
 }
 
+@font-face {
+  font-family: ABC Monument Grotesk;
+  src: url("ABCMonumentGrotesk-Regular.e7c146fc.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   --color-text: #000;
   --color-link: #000;
@@ -99,6 +106,7 @@ a:focus-visible {
 }
 
 main {
+  width: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -755,8 +763,7 @@ footer .vertical-text {
   flex-direction: column;
   gap: 5px;
   margin: auto;
-  padding: 10px 5px;
-  display: flex;
+  display: none;
   position: absolute;
   left: 0;
 }
@@ -794,15 +801,13 @@ footer .vertical-text {
 }
 
 .ad-section {
-  color: #888;
-  background-color: #e0e0e0;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 150px;
   margin-bottom: 20px;
   font-size: 18px;
-  display: flex;
+  display: none;
 }
 
 .product-section {
@@ -830,7 +835,7 @@ footer .vertical-text {
 }
 
 .product-subtitle {
-  color: #666;
+  color: #000;
   text-align: left;
   margin-bottom: 20px;
   font-family: ABC Monument Grotesk;
@@ -848,11 +853,14 @@ footer .vertical-text {
 
 .product-description {
   color: #444;
+  letter-spacing: -.01em;
   text-align: left;
-  font-family: ABC Monument Grotesk;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.6;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  padding: 30px 0;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 27.3px;
 }
 
 .product-link {
@@ -933,6 +941,10 @@ footer .vertical-text {
   width: -webkit-fill-available;
 }
 
+img {
+  width: 100%;
+}
+
 #image-footer {
   align-items: center;
   padding: 25px 0 65px;
@@ -959,6 +971,7 @@ footer .vertical-text {
   border-radius: 5px;
   width: 80px;
   height: 80px;
+  transition: border-color .3s;
 }
 
 .image-wrapper img:hover {
@@ -1042,5 +1055,22 @@ footer .vertical-text {
   width: 100%;
   display: flex;
   position: relative;
+}
+
+.ad-section img {
+  width: 100%;
+  height: -webkit-fill-available;
+}
+
+@media (width >= 768px) {
+  .ad-desktop {
+    display: block;
+  }
+}
+
+@media (width <= 767px) {
+  .ad-mobile {
+    display: block;
+  }
 }
 /*# sourceMappingURL=index.d046a61c.css.map */

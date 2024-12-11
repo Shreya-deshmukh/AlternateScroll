@@ -101,7 +101,6 @@ export class Grid {
 
     // Locomotive scroll event: translate the first and third grid column -1*scrollValue px.
     this.lscroll.on("scroll", (obj) => {
-      console.log("here");
       this.lastscroll = obj.scroll.y;
       this.DOM.oddColumns.forEach(
         (column) => (column.style.transform = `translateY(${obj.scroll.y}px)`)
@@ -161,7 +160,7 @@ export class Grid {
           .to(gridItem.DOM.img.outer, { scaleY: 0.95, scaleX: 0.88 }, "start")
           .to(
             gridItem.DOM.img.inner,
-            { ease: "power4", scaleY: 1.2, scaleX: 1.2 },
+            { ease: "power4", scaleY: 1.0, scaleX: 1.2 },
             "start"
           );
       });
