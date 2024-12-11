@@ -601,6 +601,7 @@ class ProductDisplay {
         // document.addEventListener("DOMContentLoaded", () => {
         console.log("calling once");
         const columns = await this.populateColumns();
+        initializeApp(true);
         document.body.addEventListener("click", (event)=>{
         //  expandImage(event);
         });
@@ -664,6 +665,7 @@ class ProductDisplay {
         const content = await this.fetchContent(color);
         const colorOptions = await this.fetchColors();
         if (content.length <= 6) {
+            const initData = await initializeApp(false);
             document.querySelector(".column-wrap--height").style.display = "flex";
             document.querySelector(".column-wrap--height").style.flexDirection = "column";
             document.querySelector(".column-wrap--height").style.scrollStep = 0;
@@ -780,7 +782,6 @@ class ProductDisplay {
     // }
     }
     createFigure(item, index) {
-        console.log("inside ceate figure");
         const figure = document.createElement("figure");
         figure.classList.add("column__item");
         figure.innerHTML = `
@@ -954,16 +955,17 @@ window.selectColor = async function(color, color1, color2) {
     overlay.style.display = "none";
 // displayProducts(products);
 };
-// Preload images then remove loader (loading class) from body
-(0, _utils.preloadImages)(".column__item-img").then(()=>{
-    setTimeout(()=>{
-        document.getElementById("overlay").style.display = "none";
-        // document.querySelector("main").style.display = "block";
-        document.body.classList.remove("loading");
-        // Initialize the grid
-        new (0, _grid.Grid)(document.querySelector(".columns"));
-    }, 3000);
-});
+function initializeApp(isfilter) {
+    (0, _utils.preloadImages)(".column__item-img").then(()=>{
+        console.log("calling preloadImages", isfilter);
+        setTimeout(()=>{
+            document.getElementById("overlay").style.display = "none";
+            document.body.classList.remove("loading");
+            let gridInstance = new (0, _grid.Grid)(document.querySelector(".columns"));
+            if (isfilter === false) gridInstance && typeof gridInstance.destroy;
+        }, 3000);
+    });
+}
 
 },{"./utils":"72Dku","./grid":"5bMWt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"72Dku":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

@@ -13,6 +13,7 @@ export class ProductDisplay {
     // document.addEventListener("DOMContentLoaded", () => {
     console.log("calling once");
     const columns = await this.populateColumns();
+    initializeApp(true);
 
     document.body.addEventListener("click", (event) => {
       //  expandImage(event);
@@ -101,6 +102,7 @@ export class ProductDisplay {
     const colorOptions = await this.fetchColors();
 
     if (content.length <= 6) {
+      const initData = await initializeApp(false);
       document.querySelector(".column-wrap--height").style.display = "flex";
       document.querySelector(".column-wrap--height").style.flexDirection =
         "column";
@@ -254,7 +256,6 @@ export class ProductDisplay {
   }
 
   createFigure(item, index) {
-    console.log("inside ceate figure");
     const figure = document.createElement("figure");
     figure.classList.add("column__item");
     figure.innerHTML = `
@@ -273,6 +274,27 @@ export class ProductDisplay {
 
     return figure;
   }
+
+  //   createFilterFigure(item, index) {
+  //     console.log("inside ceate figure");
+  //     const figure = document.createElement("figure");
+  //     figure.classList.add("column__item");
+  //     figure.innerHTML = `
+  //   <div class="column__item-imgwrap" data-pos="${index}">
+
+  //     <div class="column__item-img"
+  //          style="background-image: url(${item.imageUrl}); cursor: pointer;"
+  //          onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.year}',${item.year})">
+  //     </div>
+  //      <div class="column__item-title" style="display: flex; justify-content: space-between;padding:5px 0px;">
+  //     <span style="text-align:left">${item.title}</span><span style="text-align:right"> ${item.year}</span>
+  //     </div>
+
+  //   </div>
+  // `;
+
+  //     return figure;
+  //   }
 }
 
 // function closeModal() {
@@ -480,16 +502,21 @@ window.selectColor = async function (color, color1, color2) {
   // displayProducts(products);
 };
 
-// Preload images then remove loader (loading class) from body
-preloadImages(".column__item-img").then(() => {
-  setTimeout(() => {
-    document.getElementById("overlay").style.display = "none";
+function initializeApp(isfilter) {
+  preloadImages(".column__item-img").then(() => {
+    console.log("calling preloadImages", isfilter);
 
-    // document.querySelector("main").style.display = "block";
+    setTimeout(() => {
+      document.getElementById("overlay").style.display = "none";
+      document.body.classList.remove("loading");
+      let gridInstance = new Grid(document.querySelector(".columns"));
 
-    document.body.classList.remove("loading");
-
-    // Initialize the grid
-    new Grid(document.querySelector(".columns"));
-  }, 3000);
-});
+      if (isfilter === false) {
+        if (gridInstance && typeof gridInstance.destroy === "function") {
+          // gridInstance.destroy(); // Call the destroy method if available
+          // gridInstance = null; // Optionally, set to null to avoid further use
+        }
+      }
+    }, 3000);
+  });
+}
