@@ -106,9 +106,26 @@ export class Grid {
       this.DOM.oddColumns.forEach(
         (column) => (column.style.transform = `translateY(${obj.scroll.y}px)`)
       );
+
+      /*********infinite scroll*********/
+      // const column1 = document.getElementById("column-1");
+      // const column2 = document.getElementById("column-2");
+
+      // const column1Images = column1.innerHTML;
+      // const column2Images = column2.innerHTML;
+
+      // setInterval(function () {
+      //   column1.innerHTML += column1Images;
+      //   column2.innerHTML += column2Images;
+      // }, 2000);
     });
+
+    /*********infinite scroll*********/
   }
 
+  getScrollInstance() {
+    return this.lscroll;
+  }
   /**
    * Initialize the events.
    */
@@ -193,6 +210,22 @@ export class Grid {
           );
       });
     }
+
+    window.addEventListener("scroll", () => {
+      // Total scrollable height: document height - viewport height
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      // Current scroll position
+      const currentScroll = window.scrollY;
+
+      // Check if user is near the bottom (e.g., within 50px)
+      if (currentScroll >= scrollableHeight - 50) {
+        console.log("At bottom!");
+      } else {
+        console.log("Not at bottom");
+      }
+    });
 
     // Recalculate current image transform
     window.addEventListener("resize", () => {

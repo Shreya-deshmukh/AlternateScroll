@@ -13,7 +13,7 @@ export class ProductDisplay {
     // document.addEventListener("DOMContentLoaded", () => {
     console.log("calling once");
     const columns = await this.populateColumns();
-    initializeApp(true);
+    //    const duplicateImages = await this.duplicateImages();
 
     document.body.addEventListener("click", (event) => {
       //  expandImage(event);
@@ -75,6 +75,34 @@ export class ProductDisplay {
     });
   }
 
+  formatDate(dateStr) {
+    const date = new Date(dateStr);
+
+    // Define month names for conversion
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    // Extract day, month, and year from the Date object
+    const day = String(date.getDate()).padStart(2, "0"); // Ensure 2-digit day
+    const month = monthNames[date.getMonth()]; // Get abbreviated month name
+    const year = date.getFullYear(); // Get full year
+
+    // Return formatted date as 'DD MMM YYYY'
+    return `${day} ${month} ${year}`;
+  }
+
   async fetchContent(searchQuery = "") {
     let url = `https://cdn.contentful.com/spaces/${this.SPACE_ID}/entries?access_token=${this.ACCESS_TOKEN}&content_type=${this.CONTENT_TYPE}`;
     if (searchQuery) {
@@ -83,13 +111,16 @@ export class ProductDisplay {
     const response = await fetch(url);
     const data = await response.json();
     return data.items.map((item) => ({
+      // Format the date
       imageUrl: `https:${
         data.includes.Asset.find(
           (asset) => asset.sys.id === item.fields.image.sys.id
         )?.fields.file.url
       }`,
       title: item.fields.title,
-      year: item.fields.year,
+      subtitle: item.fields.subheading,
+      subtitleSgd: item.fields.sgdSubheading,
+      year: item.fields.year ? this.formatDate(item.fields.year) : "",
       description: item.fields.description,
     }));
   }
@@ -102,10 +133,9 @@ export class ProductDisplay {
     const colorOptions = await this.fetchColors();
 
     if (content.length <= 6) {
-      const initData = await initializeApp(false);
       document.querySelector(".column-wrap--height").style.display = "flex";
-      document.querySelector(".column-wrap--height").style.flexDirection =
-        "column";
+      // document.querySelector(".column-wrap--height").style.flexDirection =
+      //   "column";
       document.querySelector(".column-wrap--height").style.scrollStep = 0;
     }
 
@@ -133,11 +163,6 @@ export class ProductDisplay {
       } else if (index < totalElementInColumn * 2) {
         column2.appendChild(figure2);
       }
-
-      // If you want to handle a third column:
-      // else if (index < totalElementInColumn * 3) {
-      //   column3.appendChild(figure3);
-      // }
     });
 
     // Handle odd number of elements by repeating the first element in column 2
@@ -162,11 +187,60 @@ export class ProductDisplay {
     // gridInstance.lscroll.destroy();
   }
 
+  processContent(content, totalElementInColumn, column1, column2) {
+    content.forEach((item, index) => {
+      console.log("itemmmmmmmm", item.year);
+      const figure1 = this.createFigure(item, index);
+      const figure2 = this.createFigure(item, index + 1);
+
+      if (index < totalElementInColumn) {
+        column1.appendChild(figure1);
+      } else if (index < totalElementInColumn * 2) {
+        column2.appendChild(figure2);
+      }
+
+      // Populate footer
+      const imagesWrapper = document.querySelector(".image-wrapper");
+
+      const card = document.createElement("div");
+      card.classList.add("image-card");
+
+      const img = document.createElement("img");
+      img.src = item.imageUrl;
+      img.alt = item.title;
+      img.setAttribute("data-content", item.imageUrl);
+      img.setAttribute("img-title", item.title);
+      img.setAttribute("img-year", item.year);
+
+      // Create container for title and date
+      const info = document.createElement("div");
+      info.classList.add("info");
+
+      const title = document.createElement("span");
+      title.classList.add("title");
+      title.textContent = item.title;
+
+      const date = document.createElement("span");
+      date.classList.add("date");
+      date.textContent = item.year;
+
+      // Append title and date to the info container
+      info.appendChild(title);
+      info.appendChild(date);
+
+      // Append img and info to the card
+      card.appendChild(img);
+      card.appendChild(info);
+      imagesWrapper.appendChild(card);
+    });
+  }
+
   async populateColumns(color) {
     console.log("calling populate columns");
     document.getElementById("color-picker").style.display = "block";
 
     const content = await this.fetchContent(color);
+    console.log("content*********************", content);
     const colorOptions = await this.fetchColors();
 
     if (content.length <= 6) {
@@ -190,55 +264,56 @@ export class ProductDisplay {
 
     const totalElementInColumn = Math.ceil(content.length / 2);
 
-    content.forEach((item, index) => {
-      const figure1 = this.createFigure(item, index);
-      const figure2 = this.createFigure(item, index + 1);
+    // content.forEach((item, index) => {
+    //   console.log("itemmmmmmmm", item.year);
+    //   const figure1 = this.createFigure(item, index);
+    //   const figure2 = this.createFigure(item, index + 1);
 
-      if (index < totalElementInColumn) {
-        column1.appendChild(figure1);
-      } else if (index < totalElementInColumn * 2) {
-        column2.appendChild(figure2);
-      }
+    //   if (index < totalElementInColumn) {
+    //     column1.appendChild(figure1);
+    //   } else if (index < totalElementInColumn * 2) {
+    //     column2.appendChild(figure2);
+    //   }
 
-      //populate footer
+    //   //populate footer
 
-      const imagesWrapper = document.querySelector(".image-wrapper");
+    //   const imagesWrapper = document.querySelector(".image-wrapper");
 
-      const card = document.createElement("div");
-      card.classList.add("image-card");
+    //   const card = document.createElement("div");
+    //   card.classList.add("image-card");
 
-      const img = document.createElement("img");
-      img.src = item.imageUrl;
-      img.alt = item.title;
-      img.setAttribute("data-content", item.imageUrl);
+    //   const img = document.createElement("img");
+    //   img.src = item.imageUrl;
+    //   img.alt = item.title;
+    //   img.setAttribute("data-content", item.imageUrl);
 
-      img.setAttribute("img-title", item.title);
-      img.setAttribute("img-year", item.year);
-      // Create container for title and date
-      const info = document.createElement("div");
-      info.classList.add("info");
+    //   img.setAttribute("img-title", item.title);
+    //   img.setAttribute("img-year", item.year);
+    //   // Create container for title and date
+    //   const info = document.createElement("div");
+    //   info.classList.add("info");
 
-      const title = document.createElement("span");
-      title.classList.add("title");
-      title.textContent = item.title;
+    //   const title = document.createElement("span");
+    //   title.classList.add("title");
+    //   title.textContent = item.title;
 
-      const date = document.createElement("span");
-      date.classList.add("date");
-      date.textContent = item.year;
+    //   const date = document.createElement("span");
+    //   date.classList.add("date");
+    //   date.textContent = item.year;
 
-      // Append title and date to the info container
-      info.appendChild(title);
-      info.appendChild(date);
+    //   // Append title and date to the info container
+    //   info.appendChild(title);
+    //   info.appendChild(date);
 
-      // Append img and info to the card
-      card.appendChild(img);
-      card.appendChild(info);
-      imagesWrapper.appendChild(card);
-      // If you want to handle a third column:
-      // else if (index < totalElementInColumn * 3) {
-      //   column3.appendChild(figure3);
-      // }
-    });
+    //   // Append img and info to the card
+    //   card.appendChild(img);
+    //   card.appendChild(info);
+    //   imagesWrapper.appendChild(card);
+    //   // If you want to handle a third column:
+    //   // else if (index < totalElementInColumn * 3) {
+    //   //   column3.appendChild(figure3);
+    //   // }
+    // });
 
     // Handle odd number of elements by repeating the first element in column 2
     // if (content.length % 2 === 1) {
@@ -253,9 +328,18 @@ export class ProductDisplay {
     //     </figcaption>
     //   `;
     // }
+
+    for (let i = 0; i < 50; i++) {
+      // Assuming `content`, `totalElementInColumn`, `column1`, and `column2` are defined
+      this.processContent(content, totalElementInColumn, column1, column2);
+    }
   }
 
+  // Call this function 20 times
+
   createFigure(item, index) {
+    const dt = `${item.description}`.trim();
+    const des = dt.replace(/'/g, "");
     const figure = document.createElement("figure");
     figure.classList.add("column__item");
     figure.innerHTML = `
@@ -263,7 +347,7 @@ export class ProductDisplay {
    
     <div class="column__item-img" 
          style="background-image: url(${item.imageUrl}); cursor: pointer;" 
-         onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.year}',${item.year})">
+         onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.subtitle}','${item.subtitleSgd}','${item.year}','${des}')">
     </div>
      <div class="column__item-title" style="display: flex; justify-content: space-between;padding:5px 0px;">
     <span style="text-align:left">${item.title}</span><span style="text-align:right"> ${item.year}</span>
@@ -275,27 +359,22 @@ export class ProductDisplay {
     return figure;
   }
 
-  //   createFilterFigure(item, index) {
-  //     console.log("inside ceate figure");
-  //     const figure = document.createElement("figure");
-  //     figure.classList.add("column__item");
-  //     figure.innerHTML = `
-  //   <div class="column__item-imgwrap" data-pos="${index}">
+  duplicateImages() {
+    const column1 = document.getElementById("column-1");
+    const column2 = document.getElementById("column-2");
 
-  //     <div class="column__item-img"
-  //          style="background-image: url(${item.imageUrl}); cursor: pointer;"
-  //          onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.year}',${item.year})">
-  //     </div>
-  //      <div class="column__item-title" style="display: flex; justify-content: space-between;padding:5px 0px;">
-  //     <span style="text-align:left">${item.title}</span><span style="text-align:right"> ${item.year}</span>
-  //     </div>
+    const column1Images = column1.innerHTML;
+    const column2Images = column2.innerHTML;
 
-  //   </div>
-  // `;
+    column1.innerHTML += column1Images;
+    column2.innerHTML += column2Images;
 
-  //     return figure;
-  //   }
+    // Update Locomotive Scroll after DOM changes
+    // Grif.getScrollInstance().update();
+  }
 }
+
+const productDisplayInstance = new ProductDisplay();
 
 // function closeModal() {
 //   const imageModal = document.getElementById("imageModal");
@@ -339,7 +418,7 @@ function loadFooterImages() {
 
   const imageModal = document.getElementById("product-image");
   const productTitle = document.querySelector(".product-title");
-  const productYear = document.querySelector(".product-subtitle");
+  const productYear = document.querySelector(".product-date");
 
   images.forEach((image) => {
     image.addEventListener("click", function () {
@@ -360,8 +439,22 @@ function loadFooterImages() {
   });
 }
 
-window.showPageContent = function (imageUrl, title, year) {
-  console.log("calling showPageContent....!");
+window.showPageContent = function (
+  imageUrl,
+  title,
+  subtitle,
+  subtitleSgd,
+  year,
+  description
+) {
+  console.log(
+    "calling showPageContent....!",
+    subtitleSgd,
+    subtitle,
+    description,
+    year,
+    "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYyy"
+  );
 
   // const item = JSON.parse(element.replace(/\\'/g, "'").replace(/\\"/g, '"'));
 
@@ -370,7 +463,9 @@ window.showPageContent = function (imageUrl, title, year) {
   const column = document.getElementById("columns");
   const colorpicker = document.getElementById("color-picker");
   const productTitle = document.querySelector(".product-title");
-  const productYear = document.querySelector(".product-subtitle");
+  const productSubTitle = document.querySelector(".product-subtitle");
+  const productSubTitleSGD = document.querySelector(".product-subtitle-sgd");
+  const productYear = document.querySelector(".product-date");
   const productDescription = document.querySelector(".product-description");
 
   column.style.display = "none";
@@ -379,6 +474,10 @@ window.showPageContent = function (imageUrl, title, year) {
   imageModal.style.backgroundImage = `url(${imageUrl})`;
 
   productTitle.textContent = title;
+  productSubTitle.textContent = subtitle;
+  productSubTitleSGD.textContent = subtitleSgd;
+  productDescription.textContent = description;
+
   productYear.textContent = year;
   // productDescription.textContent = title;
   fetchAds();
@@ -466,8 +565,6 @@ window.closeColorPicker = function () {
   document.getElementById("color-picker-popup").classList.add("hidden");
 };
 
-const productDisplayInstance = new ProductDisplay();
-
 // Function triggered when a color is selected
 window.selectColor = async function (color, color1, color2) {
   document.querySelector(".page-container").style.display = "none";
@@ -502,21 +599,32 @@ window.selectColor = async function (color, color1, color2) {
   // displayProducts(products);
 };
 
-function initializeApp(isfilter) {
-  preloadImages(".column__item-img").then(() => {
-    console.log("calling preloadImages", isfilter);
+// Preload images then remove loader (loading class) from body
 
-    setTimeout(() => {
-      document.getElementById("overlay").style.display = "none";
-      document.body.classList.remove("loading");
-      let gridInstance = new Grid(document.querySelector(".columns"));
+preloadImages(".column__item-img").then(() => {
+  setTimeout(() => {
+    document.getElementById("overlay").style.display = "none";
 
-      if (isfilter === false) {
-        if (gridInstance && typeof gridInstance.destroy === "function") {
-          // gridInstance.destroy(); // Call the destroy method if available
-          // gridInstance = null; // Optionally, set to null to avoid further use
-        }
-      }
-    }, 3000);
-  });
-}
+    // document.querySelector("main").style.display = "block";
+
+    document.body.classList.remove("loading");
+
+    // Initialize the grid
+    const gridInstance = new Grid(document.querySelector(".columns"));
+    // const column1 = document.getElementById("column-1");
+    // const column2 = document.getElementById("column-2");
+
+    // const column1Images = column1.innerHTML;
+    // const column2Images = column2.innerHTML;
+
+    // setInterval(function () {
+    //   column1.innerHTML += column1Images;
+    //   column2.innerHTML += column2Images;
+    // }, 1000);
+
+    // console.log(column1, "cccooollluuummmnnnn111111");
+    // gridInstance.getScrollInstance().update({});
+
+    // const duplcateColumns = productDisplayInstance.duplicateImages();
+  }, 3000);
+});

@@ -614,7 +614,7 @@ html.has-scroll-dragging {
 }
 
 .has-scroll-smooth [data-scroll-container] {
-	/* min-height: 100vh; */
+	min-height: 100vh;
 }
 
 [data-scroll-direction="horizontal"] [data-scroll-container] {
@@ -734,8 +734,17 @@ body {
 	position: fixed;
 	left: 10px;
 	bottom: 10px;
-	font-size: 32px;
-	font-weight: bold;
+	/* font-family: Maison Neue; */
+	font-size: 42px;
+	font-weight: 400;
+	line-height: 37.8px;
+	letter-spacing: 0.08em;
+	/* text-align: left; */
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+
+
+
   }
   
 
@@ -915,15 +924,26 @@ height: 36px;
 .product-section {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	/* align-items: center; */
 	text-align: left;
 }
-.product-title,
-  .product-subtitle,
-  .product-description {
-    text-align: left;
-    width: 100%; /* Ensure the elements use the full width */
-  }
+
+.product-subtitle,
+.product-subtitle-sgd{
+	font-family: ABC Monument Grotesk;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 19.8px;
+	letter-spacing: -0.03em;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	
+}
+
+.product-subtitle-sgd{
+	margin-bottom: 20px;
+}
 
 .product-title {
 	/* font-size: 24px;
@@ -944,7 +964,7 @@ padding:"10px 0px";
 
 }
 
-.product-subtitle {
+/* .product-subtitle {
 	font-size: 18px;
 	font-weight: 400;
     font-family: 'ABC Monument Grotesk';
@@ -952,7 +972,7 @@ padding:"10px 0px";
 	margin-bottom: 20px;
 	text-align: left;
 	
-}
+} */
 
 .product-image {
 	width: -webkit-fill-available;
