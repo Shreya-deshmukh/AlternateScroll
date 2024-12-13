@@ -329,7 +329,7 @@ export class ProductDisplay {
     //   `;
     // }
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 50; i++) {
       // Assuming `content`, `totalElementInColumn`, `column1`, and `column2` are defined
       this.processContent(content, totalElementInColumn, column1, column2);
     }
@@ -357,6 +357,20 @@ export class ProductDisplay {
 `;
 
     return figure;
+  }
+
+  duplicateImages() {
+    const column1 = document.getElementById("column-1");
+    const column2 = document.getElementById("column-2");
+
+    const column1Images = column1.innerHTML;
+    const column2Images = column2.innerHTML;
+
+    column1.innerHTML += column1Images;
+    column2.innerHTML += column2Images;
+
+    // Update Locomotive Scroll after DOM changes
+    // Grif.getScrollInstance().update();
   }
 }
 

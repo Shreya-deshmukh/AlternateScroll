@@ -691,7 +691,7 @@ footer .vertical-text {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   align-items: center;
-  font-size: 42px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 37.8px;
   position: fixed;
@@ -826,7 +826,7 @@ footer .vertical-text {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   font-family: ABC Monument Grotesk;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 19.8px;
 }
@@ -862,7 +862,7 @@ footer .vertical-text {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   padding: 30px 0;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 400;
   line-height: 27.3px;
 }
