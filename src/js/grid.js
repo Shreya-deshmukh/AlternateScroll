@@ -469,7 +469,7 @@ export class Grid {
       .to(
         [this.DOM.backCtrl, this.DOM.contentNav, gridItem.contentItem.DOM.text],
         {
-          opacity: 0,
+          opacity: 1,
         },
         "start"
       )

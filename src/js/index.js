@@ -471,14 +471,15 @@ window.showPageContent = function (
   pageContent.style.display = "block"; // Display the page
 };
 
-window.backtohome = function () {
-  alert("back to home");
+window.BacktoHome = function () {
+  console.log("calling BacktoHome....!");
   const pageContent = document.getElementById("pageContent");
   const imageModal = document.getElementsByClassName("product-image");
   const column = document.getElementById("columns");
 
   pageContent.style.display = "none";
-  column.style.display = "block";
+  column.style.display = "flex";
+  document.getElementById("color-picker").style.display = "block";
 };
 
 async function fetchAds() {

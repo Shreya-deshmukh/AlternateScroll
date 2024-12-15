@@ -947,13 +947,14 @@ window.showPageContent = function(imageUrl, title, subtitle, subtitleSgd, year, 
     loadFooterImages();
     pageContent.style.display = "block"; // Display the page
 };
-window.backtohome = function() {
-    alert("back to home");
+window.BacktoHome = function() {
+    console.log("calling BacktoHome....!");
     const pageContent = document.getElementById("pageContent");
     const imageModal = document.getElementsByClassName("product-image");
     const column = document.getElementById("columns");
     pageContent.style.display = "none";
-    column.style.display = "block";
+    column.style.display = "flex";
+    document.getElementById("color-picker").style.display = "block";
 };
 async function fetchAds() {
     try {
@@ -1873,7 +1874,7 @@ class Grid {
             this.DOM.contentNav,
             gridItem.contentItem.DOM.text
         ], {
-            opacity: 0
+            opacity: 1
         }, "start").to(gridItem.contentItem.DOM.title, {
             opacity: 0,
             y: "-100%",
