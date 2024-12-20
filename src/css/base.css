@@ -1217,3 +1217,50 @@ img{
 	  display: block;
 	}
   }
+
+  .warning-overlay {
+	display: none;
+	position: fixed;
+	top: 192.3px;
+	/* left: 200px; */
+
+	background-color: rgba(255, 255, 255, 0.95);
+	color: black;
+	z-index: 9999;
+	text-align: center;
+	width: 60%;
+    margin-left: 20%;
+  }
+
+  .warning-overlay.active {
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+  }
+
+  .warning-content {
+	padding: 30px;
+	text-align: center;
+	background-color: white;
+	border-radius: 10px;
+	/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  }
+
+  .warning-content img {
+	width: 50px;
+	margin-bottom: 20px;
+  }
+
+  .warning-content p {
+	margin: 0;
+	
+font-family: Rhymes Display Trial;
+font-size: 18px;
+font-weight: 300;
+/* line-height: 19.8px; */
+letter-spacing: -0.01em;
+text-align: center;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+  }

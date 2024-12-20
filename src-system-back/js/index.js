@@ -280,7 +280,7 @@ export class ProductDisplay {
     figure.innerHTML = `
   <div class="column__item-imgwrap" data-pos="${index}">
    
-  <a href="./details.html?title=${item.title}&year=${
+  <a href="../details.html?title=${item.title}&year=${
       item.year
     }&imageUrl=${encodeURIComponent(item.imageUrl)}" class="column__item-link" >
     <div class="column__item-img" 

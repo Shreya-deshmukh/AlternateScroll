@@ -12,7 +12,18 @@ export class ProductDisplay {
   async init() {
     // document.addEventListener("DOMContentLoaded", () => {
     console.log("calling once");
-    const columns = await this.populateColumns();
+
+    const warningOverlay = document.getElementById("warning");
+    if (window.innerWidth > 768) {
+      const colorOptions = await this.fetchColors();
+      setTimeout(() => {
+        warningOverlay.classList.add("active");
+      }, 3000);
+    } else {
+      warningOverlay.classList.remove("active");
+      const columns = await this.populateColumns();
+    }
+
     //    const duplicateImages = await this.duplicateImages();
 
     document.body.addEventListener("click", (event) => {

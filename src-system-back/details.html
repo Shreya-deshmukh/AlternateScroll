@@ -13,7 +13,7 @@
 		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 	</head>
 	<body class="loading" >
-	<!-- <a href="../src/details.html"><h1>hello</h1></a> -->
+		<h1>hello</h1>
 		<div id="overlay" onclick="toggleColorPopup()"></div>
 				<div class="sidebar">
 			<a href="/" class="logo-link"><img src="img/brandmark.png" alt="logo" style="width: -webkit-fill-available;"></img></a>
@@ -30,27 +30,10 @@
 		  
 		  <main style="width:100%">
 		
-			<div class="columns" id="columns" data-scroll-container>
-			
-
-				<div class="column-wrap column-wrap--height">
-
-				<div class="column" id="column-1">
-                </div>
-				</div>
-
-				<div class="column-wrap">
-					<div class="column" id="column-2" data-scroll-section>
-					</div>
-				</div>
-
-<!-- <div class="column" id="column-3"></div> -->
-				</div>
-
-			</div>
+			<h1>Below A Grandkjkjlk</h1>
 
 			<div class="page-container" id="pageContent" style="display:none;">
-				<div class="ad-section">AD HERE</div>
+				<div class="ad-section">AD HEREbmnb</div>
 		
 				<div class="product-section"><button class="unbutton button-back"><svg viewBox="0 0 50 9" width="100%"><path d="M0 4.5l5-3M0 4.5l5 3M50 4.5h-77"></path></svg></button>
 
@@ -75,13 +58,67 @@
 				</footer>
 			</div>
 		
-		</main>
+		  </main>
 
 		<footer>
-			<div class="vertical-text"><a href="https://bagaholicboy.com/">B / A / G</a></div>
+		  <div class="vertical-text"><a href="https://bagaholicboy.com/">B / A / G</a></div>
 		  </footer>
+          <script>
+			// Execute when the page is fully loaded
+			window.onload = function () {
+				// Remove the "loading" class from the body
+				// document.body.classList.remove("loading");
+	
+				// // Display the page content
+				// document.getElementById("pageContent").style.display = "block";
+	
+				console.log("Page is fully loaded, and custom logic has been executed.");
+			};
+		</script>
 
-		<script type="module" src="js/index.js"></script>
 		<script type="module" src="js/colorFilter.js"></script>
+		<script>
+
+			window.addEventListener("load", function() {
+				console.log("Page is fully loaded");
+			});
+
+			window.onload = function() {
+
+				alert("hello");
+				// Get the current window URL
+				const currentUrl = window.location.href;
+	
+				// Parse the URL
+				const url = new URL(currentUrl);
+
+				console.log(url);
+	
+				// Get the image URL from the query parameters
+				const imageUrl = url.searchParams.get('imageURL'); // Example: ?image=your-image-url
+				const title = url.searchParams.get('title'); // Example: ?title=your-title
+				const year = url.searchParams.get('year'); // Example: ?year=your-year
+	
+				if (imageUrl) {
+					const pageContent = document.getElementById("pageContent");
+                    const imageModal = document.getElementById("product-image");
+					const column = document.getElementById("columns");
+					const productTitle = document.querySelector(".product-title");
+					const productYear = document.querySelector(".product-subtitle");
+					const productDescription = document.querySelector(".product-description");
+
+					imageModal.style.backgroundImage = `url(${imageUrl})`;
+
+					productTitle.textContent = title;
+					productYear.textContent = year;
+  // productDescription.textContent = title;
+
+                    loadFooterImages();
+				} else {
+					// Handle missing or invalid image URL
+					// document.getElementById('image-container').textContent = 'No image URL provided.';
+				}
+			};
+		</script>
 	</body>
 </html>

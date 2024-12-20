@@ -1077,4 +1077,44 @@ img {
     display: block;
   }
 }
+
+.warning-overlay {
+  color: #000;
+  z-index: 9999;
+  text-align: center;
+  background-color: #fffffff2;
+  width: 60%;
+  margin-left: 20%;
+  display: none;
+  position: fixed;
+  top: 192.3px;
+}
+
+.warning-overlay.active {
+  justify-content: center;
+  display: flex;
+}
+
+.warning-content {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.warning-content img {
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.warning-content p {
+  letter-spacing: -.01em;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin: 0;
+  font-family: Rhymes Display Trial;
+  font-size: 18px;
+  font-weight: 300;
+}
 /*# sourceMappingURL=index.d046a61c.css.map */
