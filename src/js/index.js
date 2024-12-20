@@ -15,7 +15,7 @@ export class ProductDisplay {
 
     const warningOverlay = document.getElementById("warning");
     if (window.innerWidth > 768) {
-      const colorOptions = await this.fetchColors();
+      // const colorOptions = await this.fetchColors();
       setTimeout(() => {
         warningOverlay.classList.add("active");
       }, 3000);

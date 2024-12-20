@@ -601,12 +601,11 @@ class ProductDisplay {
         // document.addEventListener("DOMContentLoaded", () => {
         console.log("calling once");
         const warningOverlay = document.getElementById("warning");
-        if (window.innerWidth > 768) {
-            const colorOptions = await this.fetchColors();
-            setTimeout(()=>{
-                warningOverlay.classList.add("active");
-            }, 3000);
-        } else {
+        if (window.innerWidth > 768) // const colorOptions = await this.fetchColors();
+        setTimeout(()=>{
+            warningOverlay.classList.add("active");
+        }, 3000);
+        else {
             warningOverlay.classList.remove("active");
             const columns = await this.populateColumns();
         }
