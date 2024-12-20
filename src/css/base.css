@@ -1228,7 +1228,7 @@ img{
 	color: black;
 	z-index: 9999;
 	text-align: center;
-	width: 100%;
+	width: 95%;
     /* margin-left: 20%; */
   }
 
@@ -1239,7 +1239,7 @@ img{
   }
 
   .warning-content {
-	padding: 30px;
+	/* padding: 30px; */
 	text-align: center;
 	background-color: white;
 	border-radius: 10px;

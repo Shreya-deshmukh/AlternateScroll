@@ -1083,7 +1083,7 @@ img {
   z-index: 9999;
   text-align: center;
   background-color: #fffffff2;
-  width: 100%;
+  width: 95%;
   display: none;
   position: fixed;
   top: 180.3px;
@@ -1098,7 +1098,6 @@ img {
   text-align: center;
   background-color: #fff;
   border-radius: 10px;
-  padding: 30px;
 }
 
 .warning-content img {
