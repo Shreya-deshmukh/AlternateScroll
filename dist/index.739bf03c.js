@@ -744,7 +744,7 @@ class ProductDisplay {
     }
     processContent(content, totalElementInColumn, column1, column2) {
         content.forEach((item, index)=>{
-            console.log("itemmmmmmmm", item.year);
+            console.log("itemmmmmmmm", item);
             const figure1 = this.createFigure(item, index);
             const figure2 = this.createFigure(item, index + 1);
             if (index < totalElementInColumn) column1.appendChild(figure1);
@@ -759,6 +759,7 @@ class ProductDisplay {
             img.setAttribute("data-content", item.imageUrl);
             img.setAttribute("img-title", item.title);
             img.setAttribute("img-year", item.year);
+            img.setAttribute("img-description", item.description);
             // Create container for title and date
             const info = document.createElement("div");
             info.classList.add("info");
@@ -783,10 +784,7 @@ class ProductDisplay {
         const content = await this.fetchContent(color);
         console.log("content*********************", content);
         const colorOptions = await this.fetchColors();
-        if (content.length <= 6) {
-            document.querySelector(".column-wrap--height").style.display = "flex";
-            document.querySelector(".column-wrap--height").style.flexDirection = "column";
-        }
+        if (content.length <= 6) document.querySelector(".column-wrap--height").style.display = "flex";
         let column1 = document.getElementById("column-1");
         let column2 = document.getElementById("column-2");
         // Clear the columns if a color filter is applied
@@ -851,7 +849,8 @@ class ProductDisplay {
         //     </figcaption>
         //   `;
         // }
-        for(let i = 0; i < 25; i++)// Assuming `content`, `totalElementInColumn`, `column1`, and `column2` are defined
+        //scrolling
+        for(let i = 0; i < 10; i++)// Assuming `content`, `totalElementInColumn`, `column1`, and `column2` are defined
         this.processContent(content, totalElementInColumn, column1, column2);
     }
     // Call this function 20 times
@@ -865,14 +864,13 @@ class ProductDisplay {
    
     <div class="column__item-img" 
          style="background-image: url(${item.imageUrl}); cursor: pointer;" 
-         onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.subtitle}','${item.subtitleSgd}','${item.year}','${des}')">
+        onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.subtitle}', '${item.subtitleSgd}', '${item.year}', \`${des}\`)">
     </div>
      <div class="column__item-title" style="display: flex; justify-content: space-between;padding:5px 0px;">
-    <span style="text-align:left">${item.title}</span><span style="text-align:right"> ${item.year}</span>
+    <span style="text-align:left">${item.title}</span>
     </div>
    
-  </div>
-`;
+  </div>`;
         return figure;
     }
 }
@@ -913,6 +911,7 @@ function loadFooterImages() {
     const imageModal = document.getElementById("product-image");
     const productTitle = document.querySelector(".product-title");
     const productYear = document.querySelector(".product-date");
+    const productDescription = document.querySelector(".product-description");
     images.forEach((image)=>{
         image.addEventListener("click", function() {
             imageModal.style.opacity = 0; // Start fade-out
@@ -921,6 +920,7 @@ function loadFooterImages() {
                 imageModal.style.backgroundImage = `url(${image.src})`;
                 productTitle.textContent = image.getAttribute("img-title");
                 productYear.textContent = image.getAttribute("img-year");
+                productDescription.textContent = image.getAttribute("img-description");
                 imageModal.style.opacity = 1; // Start fade-in
                 const contentURL = image.getAttribute("data-content");
                 contentDisplay.innerHTML = `<iframe src="${contentURL}" frameborder="0" style="width: 100%; height: 100%;"></iframe>`;
@@ -931,7 +931,7 @@ function loadFooterImages() {
     });
 }
 window.showPageContent = function(imageUrl, title, subtitle, subtitleSgd, year, description) {
-    console.log("calling showPageContent....!", subtitleSgd, subtitle, description, year, "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYyy");
+    console.log("calling showPageContent....!", subtitleSgd, subtitle, description, year);
     // const item = JSON.parse(element.replace(/\\'/g, "'").replace(/\\"/g, '"'));
     const pageContent = document.getElementById("pageContent");
     const imageModal = document.getElementById("product-image");
@@ -1894,7 +1894,10 @@ class Grid {
             opacity: 0,
             delay: (pos)=>-0.03 * pos,
             onComplete: ()=>bodyEl.classList.remove("view-content")
-        }, "start").add(()=>gridItem.contentItem.DOM.el.classList.remove("content__item--current")).set([
+        }, "start")// .add(() =>
+        //   gridItem.contentItem.DOM.el.classList.remove("content__item--current")
+        // )
+        .set([
             gridItem.DOM.img.outer,
             this.viewportGridItemsImgOuter
         ], {

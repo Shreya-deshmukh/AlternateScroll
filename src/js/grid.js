@@ -492,9 +492,9 @@ export class Grid {
         },
         "start"
       )
-      .add(() =>
-        gridItem.contentItem.DOM.el.classList.remove("content__item--current")
-      )
+      // .add(() =>
+      //   gridItem.contentItem.DOM.el.classList.remove("content__item--current")
+      // )
 
       .set(
         [gridItem.DOM.img.outer, this.viewportGridItemsImgOuter],

@@ -200,7 +200,7 @@ export class ProductDisplay {
 
   processContent(content, totalElementInColumn, column1, column2) {
     content.forEach((item, index) => {
-      console.log("itemmmmmmmm", item);
+      console.log("itemmmmmmmm", item.year);
       const figure1 = this.createFigure(item, index);
       const figure2 = this.createFigure(item, index + 1);
 
@@ -222,7 +222,6 @@ export class ProductDisplay {
       img.setAttribute("data-content", item.imageUrl);
       img.setAttribute("img-title", item.title);
       img.setAttribute("img-year", item.year);
-      img.setAttribute("img-description", item.description);
 
       // Create container for title and date
       const info = document.createElement("div");
@@ -257,8 +256,8 @@ export class ProductDisplay {
 
     if (content.length <= 6) {
       document.querySelector(".column-wrap--height").style.display = "flex";
-      // document.querySelector(".column-wrap--height").style.flexDirection =
-      //   "column";
+      document.querySelector(".column-wrap--height").style.flexDirection =
+        "column";
     }
 
     let column1 = document.getElementById("column-1");
@@ -341,8 +340,7 @@ export class ProductDisplay {
     //   `;
     // }
 
-    //scrolling
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 25; i++) {
       // Assuming `content`, `totalElementInColumn`, `column1`, and `column2` are defined
       this.processContent(content, totalElementInColumn, column1, column2);
     }
@@ -360,13 +358,14 @@ export class ProductDisplay {
    
     <div class="column__item-img" 
          style="background-image: url(${item.imageUrl}); cursor: pointer;" 
-        onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.subtitle}', '${item.subtitleSgd}', '${item.year}', \`${des}\`)">
+         onclick="showPageContent('${item.imageUrl}', '${item.title}', '${item.subtitle}','${item.subtitleSgd}','${item.year}','${des}')">
     </div>
      <div class="column__item-title" style="display: flex; justify-content: space-between;padding:5px 0px;">
-    <span style="text-align:left">${item.title}</span>
+    <span style="text-align:left">${item.title}</span><span style="text-align:right"> ${item.year}</span>
     </div>
    
-  </div>`;
+  </div>
+`;
 
     return figure;
   }
@@ -417,7 +416,6 @@ function loadFooterImages() {
   const imageModal = document.getElementById("product-image");
   const productTitle = document.querySelector(".product-title");
   const productYear = document.querySelector(".product-date");
-  const productDescription = document.querySelector(".product-description");
 
   images.forEach((image) => {
     image.addEventListener("click", function () {
@@ -427,7 +425,6 @@ function loadFooterImages() {
         imageModal.style.backgroundImage = `url(${image.src})`;
         productTitle.textContent = image.getAttribute("img-title");
         productYear.textContent = image.getAttribute("img-year");
-        productDescription.textContent = image.getAttribute("img-description");
         imageModal.style.opacity = 1; // Start fade-in
         const contentURL = image.getAttribute("data-content");
 
