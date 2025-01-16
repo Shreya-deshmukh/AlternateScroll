@@ -32,6 +32,62 @@ export class ProductDisplay {
     // });
   }
 
+  //color-filter with linear gradient
+
+  // async fetchColors() {
+  //   console.log("calling fetchcolor");
+  //   const url = `https://cdn.contentful.com/spaces/${this.SPACE_ID}/entries?access_token=${this.ACCESS_TOKEN}&content_type=colorFilters`;
+  //   try {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
+
+  //     console.log(data, "dddddddddddddddddddddddd");
+
+  //     const colors = data.items
+  //       .map((item) => ({
+  //         color: item.fields.color,
+  //         color1: item.fields.color1,
+  //         color2: item.fields.color2,
+  //       }))
+  //       .filter((color) => color.color1 && color.color2 && color.color);
+
+  //     console.log(colors, "values");
+
+  //     const uniqueColors = [...new Set(colors)];
+
+  //     console.log(uniqueColors, "uuuuuuuuuuu");
+  //     localStorage.setItem("color-list", uniqueColors);
+  //     productDisplayInstance.populateColors(uniqueColors);
+  //   } catch (error) {
+  //     console.error("Error fetching colors:", error);
+  //   }
+  // }
+
+  // async populateColors(colors) {
+  //   const colorPopup = document.querySelector(".color-popup");
+  //   const mainCircle = document.querySelector(".main-circle");
+  //   colorPopup.innerHTML = "";
+
+  //   mainCircle.style.background = `linear-gradient(180deg, ${colors[0].color1} 50%, ${colors[0].color2} 50%)`;
+  //   console.log(mainCircle.style.backgroundColor, "hhhyhyyyaaaaaaaaaaaaa");
+  //   // }
+
+  //   colors.forEach((colorItem, index) => {
+  //     const colorDiv = document.createElement("div");
+  //     colorDiv.className = `color-circle color-${index}`;
+  //     colorDiv.style.background = `linear-gradient(180deg, ${colorItem.color1} 50%, ${colorItem.color2} 50%)`;
+  //     colorDiv.style.border = `1px solid hsla(260,11%,85%,1)`;
+
+  //     colorDiv.setAttribute(
+  //       "onclick",
+  //       `selectColor('${colorItem.color}','${colorItem.color1}','${colorItem.color2}')`
+  //     );
+  //     colorPopup.appendChild(colorDiv);
+
+  //     // Set first color as main-circle color
+  //   });
+  // }
+
   async fetchColors() {
     console.log("calling fetchcolor");
     const url = `https://cdn.contentful.com/spaces/${this.SPACE_ID}/entries?access_token=${this.ACCESS_TOKEN}&content_type=colorFilters`;
@@ -44,10 +100,8 @@ export class ProductDisplay {
       const colors = data.items
         .map((item) => ({
           color: item.fields.color,
-          color1: item.fields.color1,
-          color2: item.fields.color2,
         }))
-        .filter((color) => color.color1 && color.color2 && color.color);
+        .filter((color) => color.color);
 
       console.log(colors, "values");
 
@@ -66,20 +120,19 @@ export class ProductDisplay {
     const mainCircle = document.querySelector(".main-circle");
     colorPopup.innerHTML = "";
 
-    mainCircle.style.background = `linear-gradient(180deg, ${colors[0].color1} 50%, ${colors[0].color2} 50%)`;
+    console.log(colors, "colors");
+
+    mainCircle.style.background = colors[0].color;
     console.log(mainCircle.style.backgroundColor, "hhhyhyyyaaaaaaaaaaaaa");
     // }
 
     colors.forEach((colorItem, index) => {
       const colorDiv = document.createElement("div");
       colorDiv.className = `color-circle color-${index}`;
-      colorDiv.style.background = `linear-gradient(180deg, ${colorItem.color1} 50%, ${colorItem.color2} 50%)`;
+      colorDiv.style.background = colorItem.color;
       colorDiv.style.border = `1px solid hsla(260,11%,85%,1)`;
 
-      colorDiv.setAttribute(
-        "onclick",
-        `selectColor('${colorItem.color}','${colorItem.color1}','${colorItem.color2}')`
-      );
+      colorDiv.setAttribute("onclick", `selectColor('${colorItem.color}',1)`);
       colorPopup.appendChild(colorDiv);
 
       // Set first color as main-circle color
@@ -145,8 +198,8 @@ export class ProductDisplay {
 
     if (content.length <= 6) {
       document.querySelector(".column-wrap--height").style.display = "flex";
-      // document.querySelector(".column-wrap--height").style.flexDirection =
-      //   "column";
+      document.querySelector(".column-wrap--height").style.flexDirection =
+        "column";
       document.querySelector(".column-wrap--height").style.scrollStep = 0;
     }
 
@@ -200,7 +253,6 @@ export class ProductDisplay {
 
   processContent(content, totalElementInColumn, column1, column2) {
     content.forEach((item, index) => {
-      console.log("itemmmmmmmm", item);
       const figure1 = this.createFigure(item, index);
       const figure2 = this.createFigure(item, index + 1);
 
@@ -389,31 +441,8 @@ function loadFooterImages() {
   let scrollAmount = 0;
   const scrollStep = 100;
 
-  // Left arrow click
-  // leftArrow.addEventListener("click", () => {
-  //   scrollAmount = Math.max(scrollAmount - scrollStep, 0);
-  //   imagesWrapper.style.transform = `translateX(-${scrollAmount}px)`;
-  // });
-
-  // Right arrow click
-  // rightArrow.addEventListener("click", () => {
-  //   const maxScroll =
-  //     imagesWrapper.scrollWidth - imagesWrapper.parentElement.clientWidth;
-  //   scrollAmount = Math.min(scrollAmount + scrollStep, maxScroll);
-  //   imagesWrapper.style.transform = `translateX(-${scrollAmount}px)`;
-  // });
-
   // Handle image click to load content
   const images = document.querySelectorAll(".image-wrapper img");
-  // images.forEach((img) => {
-  //   img.addEventListener("click", () => {
-  //     const contentURL = img.getAttribute("data-content");
-
-  //     // Load the new content
-  //     contentDisplay.innerHTML = `<iframe src="${contentURL}" frameborder="0" style="width: 100%; height: 100%;"></iframe>`;
-  //   });
-  // });
-
   const imageModal = document.getElementById("product-image");
   const productTitle = document.querySelector(".product-title");
   const productYear = document.querySelector(".product-date");
@@ -566,18 +595,17 @@ window.closeColorPicker = function () {
 };
 
 // Function triggered when a color is selected
-window.selectColor = async function (color, color1, color2) {
+window.selectColor = async function (color, isFilter) {
   document.querySelector(".page-container").style.display = "none";
 
+  console.log(isFilter, "isFilter");
+
   // closeColorPicker();
-  console.log("calling selectcolor", color1, color2);
   const products = await productDisplayInstance.populateColumns1(color);
 
   console.log(`Selected color: ${color}`);
   // Add any additional logic for selecting the color
-  document.querySelector(
-    ".main-circle"
-  ).style.background = `linear-gradient(180deg, ${color1} 50%, ${color2} 50%)`;
+  document.querySelector(".main-circle").style.background = color;
 
   // Remove selected class from all color elements
   document.querySelectorAll(".color-option").forEach((el) => {
@@ -586,7 +614,7 @@ window.selectColor = async function (color, color1, color2) {
 
   // Add selected class to clicked color element
   const selectedColorElement = document.querySelector(
-    `[onclick="selectColor('${color}','${color1}','${color2}')"]`
+    `[onclick="selectColor('${color}',2)"]`
   );
   if (selectedColorElement) {
     selectedColorElement.classList.add("selected");

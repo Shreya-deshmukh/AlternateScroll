@@ -100,8 +100,8 @@ export class Grid {
     });
 
     // Locomotive scroll event: translate the first and third grid column -1*scrollValue px.
+
     this.lscroll.on("scroll", (obj) => {
-      console.log("here");
       this.lastscroll = obj.scroll.y;
       this.DOM.oddColumns.forEach(
         (column) => (column.style.transform = `translateY(${obj.scroll.y}px)`)
@@ -221,9 +221,9 @@ export class Grid {
 
       // Check if user is near the bottom (e.g., within 50px)
       if (currentScroll >= scrollableHeight - 50) {
-        console.log("At bottom!");
+        // console.log("At bottom!");
       } else {
-        console.log("Not at bottom");
+        // console.log("Not at bottom");
       }
     });
 

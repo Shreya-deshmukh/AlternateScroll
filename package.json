@@ -1,5 +1,5 @@
 {
-  "name": "columnscroll",
+  "name": "Below A Grand",
   "version": "1.0.0",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "",
@@ -16,7 +16,7 @@
   "keywords": [],
   "author": "Codrops",
   "license": "MIT",
-  "homepage": "https://tympanus.net/codrops",
+  "homepage": "https://alternate-scroll.vercel.app/",
   "bugs": {
     "url": "https://github.com/codrops/[NAME]/issues"
   },
